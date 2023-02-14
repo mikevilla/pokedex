@@ -1,0 +1,27 @@
+a:hover,
+a:active {
+    color: lightskyblue;
+}
+
+.grid {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.cardMedia {
+    margin: auto;
+    width: 130px;
+    height: 130px;
+}
+
+.cardContent {
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+}
+
+.pokemonDetails {
+    height: 300px;
+    width: auto;
+}
