@@ -46,3 +46,29 @@ a:active {
     width: 100%;
     content-visibility: auto;
 }
+
+.searchBox {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.searchContainer {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.searchIcon {
+    align-self: flex-end;
+    margin-bottom: 5px;
+}
+
+.searchInput {
+    width: 300px !important;
+    margin: 225px;
+}

@@ -51,3 +51,17 @@ Launches the test runner in the interactive watch mode.\
 
 
 * These are the basic steps to create a Pokédex in a concurrent environment. You may also want to add additional features like pagination, sorting, and filtering to the API to make it more user-friendly.
+
+* Option to search pokemon by name or ID
+
+* Filter pokemons by type
+
+* Pagination
+
+* Lazy Loading
+
+* Responsiveness and Test thoroughly on mobile devices
+
+* form validation
+
+* API data validation
