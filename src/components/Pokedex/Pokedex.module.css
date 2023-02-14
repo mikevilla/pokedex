@@ -1,0 +1,48 @@
+a:hover,
+a:active {
+    color: lightskyblue;
+}
+
+.grid {
+    padding-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.cardMedia {
+    margin: auto;
+    width: 130px;
+    height: 130px;
+}
+
+.cardContent {
+    font-family: Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+    /*background-color:rgba(0, 0, 0, 0.0005);*/
+}
+
+.pokemonDetails {
+    height: 300px;
+    width: auto;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    display: flex;
+    flex-shrink: 5;
+}
+
+.blur {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    height: auto;
+    width: 100%;
+    content-visibility: auto;
+}
