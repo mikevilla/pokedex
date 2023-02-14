@@ -3,6 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import { useAppSelector } from "../../app/hooks";
+import styles from "../Pokedex/Pokedex.module.css";
 
 const Search = (props: any) => {
 
@@ -12,7 +13,7 @@ const Search = (props: any) => {
     const recentlySearched: string[] = [];
 
     return (
-        <Stack spacing={2} sx={{ width: 300 }}>
+        <>
             <Autocomplete
                 freeSolo
                 id="PokemonSearch"
@@ -34,6 +35,8 @@ const Search = (props: any) => {
                 renderInput={(params) => (
                     <TextField
                         {...params}
+                        className={styles.searchInput}
+                        variant="standard"
                         label={label}
                         InputProps={{
                             ...params.InputProps,
@@ -44,7 +47,7 @@ const Search = (props: any) => {
                     />
                 )}
             />
-        </Stack>
+        </>
     );
 }
 

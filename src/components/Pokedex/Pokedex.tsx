@@ -13,11 +13,12 @@ import {
     Tooltip,
 } from '@mui/material';
 import styles from '../Pokedex/Pokedex.module.css'
-import CatchingPokemonIcon from '@mui/icons-material/CatchingPokemon';
+import SearchIcon from '@mui/icons-material/Search';
 import Search from "../Search/Search";
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {pokemonActions} from "../pokemonSlice";
 import logo from '../../../src/img/pokemon_logo_small.png';
+import TextField from '@mui/material/TextField';
 
 
 const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
@@ -61,7 +62,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
         }
 
         return (
-            <Grid item xs={12} sm={4} key={pokemonId}>
+            <Grid item xs={12} sm={3} key={pokemonId}>
                 <NavLink to={`/pokemon/${pokemonId}`}>
 
                     <Card sx={backgroundStyle}>
@@ -97,10 +98,9 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                                 />                         </Grid>
                             <Grid item xs={6}>
                                 { optionsData !== null ? (
-                                    <>
-                                        <CatchingPokemonIcon className={styles.searchIcon} />
+                                    <div className={styles.searchBox}>                                                <SearchIcon className={styles.searchIcon} />
                                         <Search options={optionsData} onChange={handleOnChange} label='Search for Pokemon' />
-                                    </>
+                                    </div>
                                 ) : null
                                 }
                            </Grid>
