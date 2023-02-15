@@ -251,14 +251,60 @@ const Pokemon: React.FC = ()=> {
         )
 
     }
+
+    const showTypes = (types: any[]) => {
+
+
+
+        type pokemonType = {
+            [key: string]: "default" | "success" | "primary" | "secondary" | "error" | "info" | "warning" | undefined
+        };
+
+        const typeStyle = {
+            marginRight: `15px`
+        }
+
+        const colorMatch: pokemonType = {
+            flying: "primary",
+            fighting: "error",
+            electric: "warning",
+            grass: "success",
+            poison: "secondary",
+            ice: "primary",
+            water: "primary",
+            ground: "warning",
+            psychic: "secondary",
+            rock: "warning",
+            bug: "secondary",
+            dragon: "success",
+            dark: "secondary",
+            fairy: "info"
+        }
+
+
+        return (
+            types.map((info: any )=> {
+
+                    const { type } = info;
+                    const { name } = type;
+
+                    console.log('NAME: ', name)
+                    console.log('HERE2 BIXBY colorMatch[name] ', colorMatch[name]);
+
+                    return (
+                        <Chip sx={typeStyle} color={colorMatch[name]} label={name}></Chip>
+                    )
+            })
+        )
+
+    }
+
     // build details jsx
     const buildDetails = () => {
 
         console.log('buildDetails id ');
         return (
             <>
-
-
                 <Grid container spacing={2}>
                     <Grid container
                           direction="row"
@@ -275,12 +321,15 @@ const Pokemon: React.FC = ()=> {
                         <Paper elevation={6}>
                             <Grid
                                 container
-                                direction="row"
+                                direction="column"
                                 justifyContent="center"
                                 alignItems="center"
                                 xs={12}>
                                 <Paper elevation={1}>
                                     <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+                                </Paper>
+                                <Paper >
+                                    { showTypes(types) }
                                 </Paper>
                             </Grid>
                             <Grid container
@@ -318,7 +367,6 @@ const Pokemon: React.FC = ()=> {
                                     <div>Egg Groups</div>
                                     <div>Gender Ratio</div>
                                     <div>Catch Rate</div>
-                                    <div>Abilities</div>
                                     <div>Category</div>
 
                                 </Paper>
@@ -349,10 +397,7 @@ const Pokemon: React.FC = ()=> {
                     </Grid>
                 </Grid>
 
-
-
-
-
+                <div>---------------------------</div>
 
                 <div>Name: {name}</div>
                 <div>ID: {pokemonId}</div>
@@ -360,17 +405,6 @@ const Pokemon: React.FC = ()=> {
                 <div>Moves: </div>
                 <div>Height: {height}</div>
                 <div>Weight: {weight}</div>
-                <div>---------------------------</div>
-                <div>Types: </div>
-                { types.map((info: any )=> {
-
-                    const { type } = info;
-                    const { name } = type;
-
-                    return (
-                        <div key={name}>{name}</div>
-                    )
-                })}
                 <div>---------------------------</div>
 
             </>
