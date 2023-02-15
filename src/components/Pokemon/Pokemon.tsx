@@ -3,6 +3,7 @@ import { NavLink, useParams } from 'react-router-dom'
 import styles from './Pokemon.module.css'
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
+import { LinearProgress, Paper } from '@mui/material';
 import {pokemonActions} from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 
@@ -208,6 +209,9 @@ const Pokemon: React.FC = ()=> {
     }
 
 
+    let progress = 50;
+
+
     return (
         <>
 
@@ -217,6 +221,9 @@ const Pokemon: React.FC = ()=> {
 
 
             <div>POKEMON DETAILS PAGE</div>
+
+            <LinearProgress variant="determinate" value={progress} />
+            <Paper elevation={3} />
 
             <div>Pokemon ID is = {params.pokemonId}</div>
             <div>
