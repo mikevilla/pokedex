@@ -3,6 +3,14 @@ a:active {
     color: lightskyblue;
 }
 
+
+.avatarSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
 .grid {
     padding-top: 20px;
     padding-left: 50px;
