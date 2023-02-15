@@ -20,34 +20,14 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {pokemonActions} from "../pokemonSlice";
 import logo from '../../../src/img/pokemon_logo_small.png';
 import TextField from '@mui/material/TextField';
-
+import {History} from "@mui/icons-material";
+import Header from '../Header/Header'
 
 const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
 
-    const [filterTerm, setFilterTerm] = useState("");
+    // const [filterTerm, setFilterTerm] = useState("");
     const pokemonData = useAppSelector(state => state.pokemon.pokemonData);
-    const optionsData = useAppSelector(state => state.pokemon.optionsData);
-    const history = useAppSelector(state => state.pokemon.historyData)
-    const dispatch = useAppDispatch();
-
-    const handleOnChange = (event: {
-            target: { value: string }
-        }) => {
-
-        console.log('event ', event.target );
-        const term = event.target.value.toLowerCase();
-        setFilterTerm(term);
-        const findPokemon = optionsData.find(element => element.name === term)
-        console.log('findPokemon = ', findPokemon);
-
-        if (findPokemon) {
-            const pokemonSearched = {...findPokemon}
-            pokemonSearched.searched = true;
-            console.log('SELECTED NEW VALUE ADDING SEARCHED ', pokemonSearched);
-            dispatch(pokemonActions.updateHistory(pokemonSearched));
-        }
-
-    }
+    const filterSearch = useAppSelector(state => state.pokemon.filterSearch);
 
     const getPokemonCard = (pokemonId: any) => {
 
@@ -95,39 +75,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
 
     return (
         <>
-            <AppBar position='static'>
-                    <Toolbar className={styles.toolbar}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={4}>
-                                <img
-                                    className={styles.logo}
-                                    src={ logo }
-                                    alt="Pokemon Logo"
-                                />                         </Grid>
-                            <Grid item xs={6}>
-                                { optionsData !== null ? (
-                                    <div className={styles.searchBox}>                                                <SearchIcon className={styles.searchIcon} />
-                                        <Search options={optionsData} onChange={handleOnChange} label='Search for Pokemon' />
-                                    </div>
-                                ) : null
-                                }
-                           </Grid>
-                            <Grid item xs={2}>
-                                <AvatarGroup max={30}>
-                                    {history.map((pokemon)=>{
-                                        return (
-                                            <Tooltip title={pokemon.name} arrow>
-                                                <NavLink to={`/pokemon/${pokemon.id}`}>
-                                                    <Avatar alt={`${pokemon.name}`} src={pokemon.sprite} />
-                                                </NavLink>
-                                            </Tooltip>
-                                        )
-                                    })}
-                                </AvatarGroup>
-                            </Grid>
-                        </Grid>
-                    </Toolbar>
-            </AppBar>
+            <Header />
 
             { pokemonData !== null ? (
             <Grid container spacing={2} className={styles.grid}>
@@ -137,7 +85,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                         // Use string includes to determine if the search term is
                         // included in the current name of the Pokemon
                         return  (
-                            pokemonData[pokemonId].name.includes(filterTerm) && getPokemonCard(pokemonId)
+                            pokemonData[pokemonId].name.includes(filterSearch) && getPokemonCard(pokemonId)
                         )
                     })
                 }

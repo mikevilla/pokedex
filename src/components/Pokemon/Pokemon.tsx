@@ -6,6 +6,7 @@ import axios from 'axios';
 import { LinearProgress, Grid, Paper } from '@mui/material';
 import {pokemonActions} from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import Header from "../Header/Header";
 
 
 const Pokemon: React.FC = ()=> {
@@ -245,6 +246,7 @@ const Pokemon: React.FC = ()=> {
 
     return (
         <>
+            <Header />
 
             {pokemonDetails === undefined && <CircularProgress/>}
             {pokemonDetails !== undefined && pokemonDetails && buildDetails()}
