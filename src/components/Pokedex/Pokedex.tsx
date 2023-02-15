@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import {
     AppBar,
     Avatar,
@@ -56,30 +56,37 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
             backgroundImage: `url(${sprite})`,
             backgroundPosition: `center`,
             backgroundRepeat: `no-repeat`,
-            backgroundSize: `1000%`,
+            backgroundSize: `3500%`,
+            borderRadius: `5px`,
             contentVisibility: `auto`,
             width: `auto`,
+            transform: `scale(0.9)`,
+            transition: `box-shadow 9s, transform 0.05s`,
+            "&:hover": {
+                cursor: `pointer`,
+                boxShadow: `0 10px 20px rgba(0,0,0,0.15)`,
+                transform: `scale(1)`,
+        },
         }
 
         return (
             <Grid item xs={12} sm={3} key={pokemonId}>
-                <NavLink to={`/pokemon/${pokemonId}`}>
-
-                    <Card sx={backgroundStyle}>
-                        <div className={styles.blur}>
-                            <CardMedia
-                                className={styles.cardMedia}
-                                image={sprite}
-                            >
-                            </CardMedia>
-                            <CardContent className={styles.cardContent}>
-                                <div>
-                                    <div className="">{id}</div>
-                                    <div className="">{name.charAt(0).toUpperCase() + name.slice(1)}</div>
-                                </div>
-                            </CardContent>
-                        </div>
-                    </Card>
+                <NavLink className={styles.navLink} to={`/pokemon/${pokemonId}`}>
+                     <Card sx={backgroundStyle}>
+                            <div className={styles.blur}>
+                                <CardMedia
+                                    className={styles.cardMedia}
+                                    image={sprite}
+                                >
+                                </CardMedia>
+                                <CardContent className={styles.cardContent}>
+                                    <div className={styles.pokemonTagContainer}>
+                                        <div className={styles.pokemonId}>#{id}</div>
+                                        <div className={styles.pokemonName}>{name.toUpperCase()}</div>
+                                    </div>
+                                </CardContent>
+                            </div>
+                        </Card>
                 </NavLink>
             </Grid>
         )
@@ -88,7 +95,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
     return (
         <>
             <AppBar position='static'>
-                    <Toolbar>
+                    <Toolbar className={styles.toolbar}>
                         <Grid container spacing={2}>
                             <Grid item xs={4}>
                                 <img
