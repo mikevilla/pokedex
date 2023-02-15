@@ -9,6 +9,7 @@ import {
     CircularProgress,
     CardMedia,
     Grid,
+    Paper,
     Toolbar,
     Tooltip,
 } from '@mui/material';
@@ -72,7 +73,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
         return (
             <Grid item xs={12} sm={3} key={pokemonId}>
                 <NavLink className={styles.navLink} to={`/pokemon/${pokemonId}`}>
-                     <Card sx={backgroundStyle}>
+                     <Paper elevation={12} sx={backgroundStyle}>
                             <div className={styles.blur}>
                                 <CardMedia
                                     className={styles.cardMedia}
@@ -86,7 +87,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                                     </div>
                                 </CardContent>
                             </div>
-                        </Card>
+                     </Paper>
                 </NavLink>
             </Grid>
         )

@@ -3,7 +3,7 @@ import { NavLink, useParams } from 'react-router-dom'
 import styles from './Pokemon.module.css'
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
-import { LinearProgress, Paper } from '@mui/material';
+import { LinearProgress, Grid, Paper } from '@mui/material';
 import {pokemonActions} from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 
@@ -183,7 +183,38 @@ const Pokemon: React.FC = ()=> {
         console.log('buildDetails id ');
         return (
             <>
-                <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+
+
+
+
+
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Paper elevation={6}>EVOLUTION</Paper>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Paper elevation={6}>
+                            <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Paper elevation={6}>
+                            INFO
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Paper elevation={6}>MOVES</Paper>
+                    </Grid>
+                </Grid>
+
+
+
+
+
+
+
+
+
                 <div>Name: {name}</div>
                 <div>ID: {pokemonId}</div>
                 <div>Abilities: </div>
