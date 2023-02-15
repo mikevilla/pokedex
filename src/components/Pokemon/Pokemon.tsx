@@ -3,7 +3,7 @@ import { NavLink, useParams } from 'react-router-dom'
 import styles from './Pokemon.module.css'
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
-import { LinearProgress, Grid, Paper } from '@mui/material';
+import { Chip, LinearProgress, Grid, Paper } from '@mui/material';
 import {pokemonActions} from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import Header from "../Header/Header";
@@ -30,15 +30,21 @@ const Pokemon: React.FC = ()=> {
     const params = useParams();
     const { pokemonId } = params;
     type PokemonType = {
+        abilities: any[],
         name: string;
         height: string;
         weight:  string;
+        moves: any[];
+        stats: any[];
         types: string[];
     }
     const initData: PokemonType = {
+        abilities: [],
         name: '',
         height: '',
         weight: '',
+        moves: [],
+        stats: [],
         types: [],
     }
 
@@ -52,7 +58,8 @@ const Pokemon: React.FC = ()=> {
 
     // Pokemon Main Details
     const [pokemonDetails, setPokemonDetails] = useState<PokemonType>(initData);
-    const { name, height, weight, types } = pokemonDetails;
+    const { abilities, moves, name, height, weight, stats, types } = pokemonDetails;
+
 
     // Pokemon Species Details
     const [speciesData, setSpeciesData] = useState<SpeciesType>(initSpeciesData);
@@ -64,14 +71,19 @@ const Pokemon: React.FC = ()=> {
     // const evolutionList = Array<Evolution>;
     const evolutionList: any[] = []
 
+    // Recursive function to drill down and build out the evolution list,
+    // its a small list so decided to do this with recursion can refactor later
     const buildEvolution = (chain: any): any => {
 
+        console.log('#### INSIDE OF THE buildEvolution chain ', chain);
+
         let name: string = chain.species.name;
+
         let pokemonEvolved: Evolution = {
             name: name
         }
 
-        console.log('INSIDE OF evolutionChain');
+        console.log('AFTER ASSIGNMENT OF CHAIN INFO evolutionChain');
         console.log('pokemonEvolved = ', pokemonEvolved);
 
         evolutionList.push(pokemonEvolved);
@@ -83,6 +95,38 @@ const Pokemon: React.FC = ()=> {
         return evolutionList;
 
     }
+
+    const showMoves = ((moves: any[])=> {
+
+        console.log('MOVES UNSORTED ', moves);
+        moves.sort((a,b) => {
+
+            const nameA = a.move.name;
+            const nameB = b.move.name;
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        })
+
+        return (
+            <>
+                {  moves.map((item)=> {
+                    return (
+                        <>
+                            <Chip label={item.move.name} variant="outlined" color="primary" size="small" />
+                        </>
+
+                    )
+                } )}
+            </>
+        )
+
+
+    })
 
     // API call to get the Pokemon Details
     useEffect(()=> {
@@ -125,6 +169,7 @@ const Pokemon: React.FC = ()=> {
             .then( (response) => {
                 const { data } = response;
                 setPokemonDetails(data);
+                console.log('AXIOS CALL POKEMON/1 DETAILS ', data)
 
             })
             .catch((error)=>{
@@ -134,12 +179,13 @@ const Pokemon: React.FC = ()=> {
             })
 
         // Pokemon Species API
+        // For Evolutions Chain
         axios
             .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonId}/`)
             .then ((response)=>{
                 const { data } = response;
                 setSpeciesData(data);
-                console.log('speciesData ', speciesData);
+                console.log('********* speciesData ', speciesData);
 
                 // make call to get the evolution chain
                 axios
@@ -168,16 +214,43 @@ const Pokemon: React.FC = ()=> {
 
     }, [pokemonId])
 
-    // console.log('paramsId = ', pokemonId);
-    // console.log('params.pokemonId ', params.pokemonId);
-    // console.log('pokemonData which is testData for now = ', pokemonData);
-    // console.log('height ', height);
-    // console.log('weight ', weight);
-    // console.log('generateMainAssetUrl(paramsId) ', generateMainAssetUrl(pokemonId!));
-    // console.log('types = ', types);
+
+    // MIN = Minimum expected value
+    // MAX = Maximum expected value
+    // Function to normalise the values (MIN / MAX could be integrated)
+    const MIN = 0;
+    const MAX = 150;
+    const normalise = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
+
+
+
+    console.log('paramsId = ', pokemonId);
+    console.log('params.pokemonId ', params.pokemonId);
+    console.log('pokemonData which is testData for now = ', pokemonData);
+    console.log('height ', height);
+    console.log('weight ', weight);
+    console.log('generateMainAssetUrl(paramsId) ', generateMainAssetUrl(pokemonId!));
+    console.log('types = ', types);
     //
 
+    console.log ('ENNNNNNDDD pokemonDetails = ', pokemonDetails);
+    console.log ('ENNNNNNDDD speciesData = ', speciesData);
 
+
+    const buildStatsSection = (stats: any[]) => {
+
+        return (
+            stats.map((item)=> {
+                return (
+                    <>
+                        <div>{item.stat.name} :  {item.base_stat}</div>
+                        <LinearProgress variant="determinate" value={normalise(item.base_stat)} />
+                    </>
+                )
+            })
+        )
+
+    }
     // build details jsx
     const buildDetails = () => {
 
@@ -186,30 +259,95 @@ const Pokemon: React.FC = ()=> {
             <>
 
 
-
-
-
                 <Grid container spacing={2}>
-                    <Grid item xs={12}>
+                    <Grid container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center"
+                          xs={12}>
                         <Paper elevation={6}>EVOLUTION</Paper>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center"
+                          xs={6}>
                         <Paper elevation={6}>
-                            <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+                            <Grid
+                                container
+                                direction="row"
+                                justifyContent="center"
+                                alignItems="center"
+                                xs={12}>
+                                <Paper elevation={1}>
+                                    <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+                                </Paper>
+                            </Grid>
+                            <Grid container
+                                  direction="row"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                  xs={12}>
+                                <Paper elevation={1}>
+                                    "It is said that Charizards fire burns hotter if it has experienced harsh battles."
+                                </Paper>
+                            </Grid>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid container
+                        direction="column"
+                        justifyContent="flex-start"
+                        alignContent="stretch"
+                        alignItems="stretch"
+                        xs={6}>
                         <Paper elevation={6}>
-                            INFO
+                            <Grid
+                                container
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="flex-start"
+                                xs={6}>
+                                <Paper elevation={1}>
+                                    <div>Height: { height }</div>
+                                    <div>Weight { weight }</div>
+                                    <div>Abilities: { abilities.map((item)=>{
+                                        return (
+                                            <>{item.name}</>
+                                        )
+                                    })}</div>
+                                    <div>Egg Groups</div>
+                                    <div>Gender Ratio</div>
+                                    <div>Catch Rate</div>
+                                    <div>Abilities</div>
+                                    <div>Category</div>
+
+                                </Paper>
+                            </Grid>
+                            <Grid
+                                container
+                                direction="row"
+                                justifyContent="flex-start"
+                                alignItems="flex-start"
+                                xs={6}>
+                                <Paper elevation={1}>
+                                    STATS Base Stats where 150 generally the max
+
+                                    { buildStatsSection(stats) }
+
+                                </Paper>
+                            </Grid>
                         </Paper>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Paper elevation={6}>MOVES</Paper>
+                    <Grid container
+                          direction="row"
+                          justifyContent="center"
+                          alignItems="center"
+                          xs={12}>
+                        <Paper elevation={6}>MOVES
+                            { showMoves(moves) }
+                        </Paper>
                     </Grid>
                 </Grid>
-
-
-
 
 
 
@@ -240,10 +378,6 @@ const Pokemon: React.FC = ()=> {
 
     }
 
-
-    let progress = 50;
-
-
     return (
         <>
             <Header />
@@ -255,7 +389,6 @@ const Pokemon: React.FC = ()=> {
 
             <div>POKEMON DETAILS PAGE</div>
 
-            <LinearProgress variant="determinate" value={progress} />
             <Paper elevation={3} />
 
             <div>Pokemon ID is = {params.pokemonId}</div>
