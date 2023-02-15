@@ -15,6 +15,7 @@ const pokemonSlice = createSlice({
         pokemonData: {} as ObjectType,
         optionsData: [] as any[],
         historyData: [] as any[],
+        filterSearch: "" as string
     },
     reducers: {
         setPokemonData(state, action) {
@@ -26,8 +27,6 @@ const pokemonSlice = createSlice({
             state.optionsData = action.payload;
         },
         updateHistory(state, action) {
-            console.log('add to the history ', action.payload);
-            console.log('state.historyData ', state.historyData);
 
             // if pokemon already in the history then no need to add to history list
             if (!state.historyData.find(element => element.name === action.payload.name)) {
@@ -35,6 +34,10 @@ const pokemonSlice = createSlice({
                 state.historyData.push(action.payload);
                 state.optionsData.unshift(action.payload);
             }
+        },
+        updateFilterSearch(state, action) {
+            console.log('filterSearch ', action.payload);
+            state.filterSearch = action.payload;
         }
     }
 
