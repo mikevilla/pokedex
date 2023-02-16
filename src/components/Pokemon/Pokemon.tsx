@@ -117,7 +117,11 @@ const Pokemon: React.FC = ()=> {
         return (
             <>
                 { moves.map((item)=> {
-                    return (<Chip label={item.move.name} variant="outlined" color="primary" size="small" />)
+                    return (
+                        <React.Fragment key={item.move.name}>
+                            <Chip label={item.move.name} variant="outlined" color="primary" size="small" />
+                        </React.Fragment>
+                    )
                 } )}
             </>
         )
@@ -228,7 +232,9 @@ const Pokemon: React.FC = ()=> {
                     const { type } = info;
                     const { name } = type;
                     return (
-                        <Chip sx={typeStyle} color={COLOR_MATCH[name]} label={name}></Chip>
+                        <React.Fragment key={name}>
+                            <Chip key={name} sx={typeStyle} color={COLOR_MATCH[name]} label={name}></Chip>
+                        </React.Fragment>
                     )
             })
         )
@@ -311,7 +317,7 @@ const Pokemon: React.FC = ()=> {
                                     <div>Weight { weight }</div>
                                     <div>Abilities: { abilities.map((item)=>{
                                         return (
-                                            <>{item.name}</>
+                                            <div key={item.name}>{item.name}</div>
                                         )
                                     })}</div>
                                     <div>Egg Groups</div>

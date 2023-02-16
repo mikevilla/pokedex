@@ -1,4 +1,4 @@
-export const POKEMON_LIMIT = 649;
+export const POKEMON_LIMIT = 807;
 
 type pokemonType = {
     [key: string]: "default" | "success" | "primary" | "secondary" | "error" | "info" | "warning" | undefined
