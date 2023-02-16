@@ -5,7 +5,7 @@ import { pokemonActions} from "./components/pokemonSlice";
 import { useAppDispatch } from './app/hooks'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import axios from 'axios';
-
+import { POKEMON_LIMIT } from './constants/pokemon'
 
 
 const App = () => {
@@ -24,20 +24,25 @@ const App = () => {
     const optionsData: any[] = [];
     const dispatch = useAppDispatch();
 
+    // This function is in case we need to switch to another source later.
     const generateMainAssetUrl = (inputId: string | null) => {
 
-        if (inputId && inputId.length === 4) {
-            return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
-        } else if (inputId) {
-            let formattedId: string = inputId.padStart(3, '0');
-            return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formattedId}.png`
-        }
+        // if (inputId && inputId.length === 4) {
+        //     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
+        // } else if (inputId) {
+        //     let formattedId: string = inputId.padStart(3, '0');
+        //     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formattedId}.png`
+        // }
+
+        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${inputId}.svg`
     }
 
     useEffect(() => {
 
-        let limit: number = 807;
-        const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`
+        // Please note that at the time of this implementation the the image url to use for the pokemon stops at 649
+        // so for the purposes of showing off the app I will limit the call to that. In the future we can find another
+        // source or use a different image. This svg seems like the best quality and fastest which is why I choose it.
+        const url = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_LIMIT}`
 
         axios
             .get(url)

@@ -4,9 +4,11 @@ import styles from './Pokemon.module.css'
 import { CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { Chip, LinearProgress, Grid, Paper } from '@mui/material';
-import {pokemonActions} from "../pokemonSlice";
+import { pokemonActions } from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import Header from "../Header/Header";
+import { COLOR_MATCH } from "../../constants/pokemon";
+import {isUndefined} from "util";
 
 
 const Pokemon: React.FC = ()=> {
@@ -25,7 +27,6 @@ const Pokemon: React.FC = ()=> {
     const dispatch = useAppDispatch();
     const optionsData = useAppSelector(state => state.pokemon.optionsData);
     const pokemonData = useAppSelector(state => state.pokemon.pokemonData);
-
 
     const params = useParams();
     const { pokemonId } = params;
@@ -48,16 +49,23 @@ const Pokemon: React.FC = ()=> {
         types: [],
     }
 
+    type EvolutionChainType = {
+        name: string;
+    }
+
+    const initEvolutionChain: EvolutionChainType[] = [];
+
     type SpeciesType = {
         evolution_chain: { url: string }
     }
+
     const initSpeciesData: SpeciesType = {
         evolution_chain: { url: "" }
     }
 
-
     // Pokemon Main Details
     const [pokemonDetails, setPokemonDetails] = useState<PokemonType>(initData);
+    const [evolutionChain, setEvolutionChain] = useState(initEvolutionChain);
     const { abilities, moves, name, height, weight, stats, types } = pokemonDetails;
 
 
@@ -65,22 +73,34 @@ const Pokemon: React.FC = ()=> {
     const [speciesData, setSpeciesData] = useState<SpeciesType>(initSpeciesData);
 
     type Evolution = {
+        id: string | undefined,
         name: string
     }
 
     // const evolutionList = Array<Evolution>;
-    const evolutionList: any[] = []
+    const evolutionList: Evolution[] = []
 
     // Recursive function to drill down and build out the evolution list,
     // its a small list so decided to do this with recursion can refactor later
     const buildEvolution = (chain: any): any => {
 
+
+        let url: string = chain.species.url;
+
         console.log('#### INSIDE OF THE buildEvolution chain ', chain);
+        console.log('CURRENT url => ', chain.species);
+        const regex = /\/(\d+)\/?/
+        const check = url.match(regex) as RegExpMatchArray | undefined;
+
+        console.log('* match * ', check![1] );
+
 
         let name: string = chain.species.name;
 
+
         let pokemonEvolved: Evolution = {
-            name: name
+            id: check![1],
+            name: name,
         }
 
         console.log('AFTER ASSIGNMENT OF CHAIN INFO evolutionChain');
@@ -185,7 +205,8 @@ const Pokemon: React.FC = ()=> {
             .then ((response)=>{
                 const { data } = response;
                 setSpeciesData(data);
-                console.log('********* speciesData ', speciesData);
+                console.log('********* speciesData basically data in the axios call ', speciesData);
+                console.log('DATA ', data);
 
                 // make call to get the evolution chain
                 axios
@@ -198,6 +219,9 @@ const Pokemon: React.FC = ()=> {
                         const evolutionChain = buildEvolution(chain);
                         console.log('** evolutionChain ', evolutionChain);
                         console.log('evolutionList', evolutionList);
+                        setEvolutionChain(evolutionList);
+                        console.log('evolutionChain =>> ', evolutionChain);
+
 
                     })
             })
@@ -235,6 +259,7 @@ const Pokemon: React.FC = ()=> {
 
     console.log ('ENNNNNNDDD pokemonDetails = ', pokemonDetails);
     console.log ('ENNNNNNDDD speciesData = ', speciesData);
+    console.log ('ENNNNNNDDD evolutionChain = ', evolutionChain);
 
 
     const buildStatsSection = (stats: any[]) => {
@@ -254,33 +279,9 @@ const Pokemon: React.FC = ()=> {
 
     const showTypes = (types: any[]) => {
 
-
-
-        type pokemonType = {
-            [key: string]: "default" | "success" | "primary" | "secondary" | "error" | "info" | "warning" | undefined
-        };
-
         const typeStyle = {
             marginRight: `15px`
         }
-
-        const colorMatch: pokemonType = {
-            flying: "primary",
-            fighting: "error",
-            electric: "warning",
-            grass: "success",
-            poison: "secondary",
-            ice: "primary",
-            water: "primary",
-            ground: "warning",
-            psychic: "secondary",
-            rock: "warning",
-            bug: "secondary",
-            dragon: "success",
-            dark: "secondary",
-            fairy: "info"
-        }
-
 
         return (
             types.map((info: any )=> {
@@ -289,10 +290,10 @@ const Pokemon: React.FC = ()=> {
                     const { name } = type;
 
                     console.log('NAME: ', name)
-                    console.log('HERE2 BIXBY colorMatch[name] ', colorMatch[name]);
+                    console.log('HERE2 BIXBY colorMatch[name] ', COLOR_MATCH[name]);
 
                     return (
-                        <Chip sx={typeStyle} color={colorMatch[name]} label={name}></Chip>
+                        <Chip sx={typeStyle} color={COLOR_MATCH[name]} label={name}></Chip>
                     )
             })
         )
@@ -310,14 +311,34 @@ const Pokemon: React.FC = ()=> {
                           direction="row"
                           justifyContent="center"
                           alignItems="center"
-                          xs={12}>
-                        <Paper elevation={6}>EVOLUTION</Paper>
+                          xs={12}
+                          md={2}
+                    >
+                        <Paper elevation={6}>
+
+                            <Grid item
+                                    xs={12}
+                            >
+                                ONE
+                            </Grid>
+                            <Grid item
+                                  xs={12}
+                            >
+                                TWO
+                            </Grid>
+                            <Grid item
+                                  xs={12}
+                            >
+                                THREE
+                            </Grid>
+                        </Paper>
                     </Grid>
                     <Grid container
                           direction="row"
                           justifyContent="center"
                           alignItems="center"
-                          xs={6}>
+                          xs={12}
+                          md={4}>
                         <Paper elevation={6}>
                             <Grid
                                 container
@@ -348,7 +369,8 @@ const Pokemon: React.FC = ()=> {
                         justifyContent="flex-start"
                         alignContent="stretch"
                         alignItems="stretch"
-                        xs={6}>
+                        xs={12}
+                        md={6}>
                         <Paper elevation={6}>
                             <Grid
                                 container
@@ -390,7 +412,8 @@ const Pokemon: React.FC = ()=> {
                           direction="row"
                           justifyContent="center"
                           alignItems="center"
-                          xs={12}>
+                          xs={12}
+                          md={12}>
                         <Paper elevation={6}>MOVES
                             { showMoves(moves) }
                         </Paper>
