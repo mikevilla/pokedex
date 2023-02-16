@@ -11,19 +11,22 @@ import { COLOR_MATCH } from "../../constants/pokemon";
 
 const Pokemon: React.FC = ()=> {
 
-    const generateMainAssetUrl = (inputId: string | null) => {
+    const generateMainAssetUrl = (inputId: string | undefined| null) => {
 
-        if (inputId && inputId.length === 4) {
-            return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
+        let url:string = "";
+
+        if (parseInt(inputId!) <= 649) {
+            url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${inputId}.svg`
         } else if (inputId) {
-            let formattedId: string = inputId.padStart(3, '0');
-            return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formattedId}.png`
+            url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
         } else {
             setPokemonDetails(initData);
         }
+
+        return url;
     }
+
     const dispatch = useAppDispatch();
-    const optionsData = useAppSelector(state => state.pokemon.optionsData);
     const pokemonData = useAppSelector(state => state.pokemon.pokemonData);
     const params = useParams();
     const { pokemonId } = params;
@@ -102,16 +105,9 @@ const Pokemon: React.FC = ()=> {
     const showMoves = ((moves: any[])=> {
 
         moves.sort((a,b) => {
-
             const nameA = a.move.name;
             const nameB = b.move.name;
-            if (nameA < nameB) {
-                return -1;
-            }
-            if (nameA > nameB) {
-                return 1;
-            }
-            return 0;
+            return nameA <= nameB ? -1 : 1
         })
 
         return (
