@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import { NavLink, useParams } from 'react-router-dom'
+import {NavLink, useNavigate, useParams} from 'react-router-dom'
 import styles from './Pokemon.module.css'
 import { CircularProgress } from '@mui/material';
+import FileUploadTwoToneIcon from '@mui/icons-material/FileUploadTwoTone';
 import axios from 'axios';
 import { Chip, LinearProgress, Grid, Paper } from '@mui/material';
 import { pokemonActions } from "../pokemonSlice";
@@ -9,6 +10,7 @@ import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import Header from "../Header/Header";
 import { COLOR_MATCH } from "../../constants/pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
+import { POKEMON_LIMIT } from '../../constants/pokemon'
 
 const Pokemon: React.FC = ()=> {
 
@@ -27,12 +29,21 @@ const Pokemon: React.FC = ()=> {
         return url;
     }
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const pokemonData = useAppSelector(state => state.pokemon.pokemonData);
     const params = useParams();
-    const { pokemonId } = params;
+    let { pokemonId } = params;
+
+    if (parseInt(pokemonId!) > POKEMON_LIMIT) {
+        navigate(`/`)
+
+        // for set id to 1 and redirect to inde page to least prevent going out of the range of supported pokemon
+        pokemonId = '1'
+    }
 
     type PokemonType = {
+        id: string,
         abilities: any[],
         name: string;
         height: string;
@@ -42,6 +53,7 @@ const Pokemon: React.FC = ()=> {
         types: string[];
     }
     const initData: PokemonType = {
+        id: '',
         abilities: [],
         name: '',
         height: '',
@@ -75,18 +87,18 @@ const Pokemon: React.FC = ()=> {
     }
 
     const initSpeciesData: SpeciesType = {
-        evolution_chain: { url: "" },
-        capture_rate: "",
+        evolution_chain: { url: '' },
+        capture_rate: '',
         egg_groups: [],
-        habitat: { name: "", url:  "" },
-        growth_rate: { name: "", url:  "" },
-        gender_rate: ""
+        habitat: { name: '', url:  '' },
+        growth_rate: { name: '', url:  '' },
+        gender_rate: ''
     }
 
     // Pokemon Main Details
     const [pokemonDetails, setPokemonDetails] = useState<PokemonType>(initData);
     const [evolutionChain, setEvolutionChain] = useState(initEvolutionChain);
-    const { abilities, moves, name, height, weight, stats, types } = pokemonDetails;
+    const { abilities, height, id, moves, name, stats, types, weight, } = pokemonDetails;
 
     // Pokemon Species Details
     const [speciesData, setSpeciesData] = useState<SpeciesType>(initSpeciesData);
@@ -281,6 +293,7 @@ const Pokemon: React.FC = ()=> {
                                             <Paper elevation={3}>
                                                 <PokemonCard pokemonId={pokemon.id}/>
                                             </Paper>
+                                            <FileUploadTwoToneIcon fontSize="large" />
                                         </>
                                     )
                                 }) }
@@ -298,6 +311,9 @@ const Pokemon: React.FC = ()=> {
                                 justifyContent="center"
                                 alignItems="center"
                                 xs={12}>
+                                <Paper elevation={1}>
+                                    <div>#{id}{name}</div>
+                                </Paper>
                                 <Paper elevation={1}>
                                     <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
                                 </Paper>
@@ -342,7 +358,7 @@ const Pokemon: React.FC = ()=> {
                                                 {item.name}
                                             </>)
                                     }) } </div>
-                                    <div>Habitat {habitat.name} </div>
+                                    { habitat && <div>Habitat {habitat.name} </div> }
                                     <div>Growth Rate {growth_rate.name} </div>
                                     <div>Gender Ratio {gender_rate} </div>
                                     <div>Capture Rate { Math.round(((parseInt(capture_rate)/255) * 100)) } % </div>
