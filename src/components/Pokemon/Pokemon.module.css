@@ -33,3 +33,7 @@ a:active {
     height: 300px;
     width: auto;
 }
+
+.statsSection {
+    width: 100%
+}

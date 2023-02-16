@@ -1,31 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import {
-    AppBar,
-    Avatar,
-    AvatarGroup,
-    Card,
     CardContent,
     CircularProgress,
     CardMedia,
     Grid,
-    Paper,
-    Toolbar,
-    Tooltip,
+    Paper, LinearProgress,
 } from '@mui/material';
 import styles from '../Pokedex/Pokedex.module.css'
-import SearchIcon from '@mui/icons-material/Search';
-import Search from "../Search/Search";
-import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import {pokemonActions} from "../pokemonSlice";
-import logo from '../../../src/img/pokemon_logo_small.png';
-import TextField from '@mui/material/TextField';
-import {History} from "@mui/icons-material";
+import { useAppSelector } from '../../app/hooks'
 import Header from '../Header/Header'
 
 const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
 
-    // const [filterTerm, setFilterTerm] = useState("");
     const pokemonData = useAppSelector(state => state.pokemon.pokemonData);
     const filterSearch = useAppSelector(state => state.pokemon.filterSearch);
 
@@ -47,7 +34,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                 cursor: `pointer`,
                 boxShadow: `0 10px 20px rgba(0,0,0,0.15)`,
                 transform: `scale(1)`,
-        },
+            },
         }
 
         return (
@@ -82,8 +69,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                 {
                     Object.keys(pokemonData).map((pokemonId: string)=>{
 
-                        // Use string includes to determine if the search term is
-                        // included in the current name of the Pokemon
+                        // Use string includes to determine if the search term is included in the current name of the Pokemon
                         return  (
                             pokemonData[pokemonId].name.includes(filterSearch) && getPokemonCard(pokemonId)
                         )
