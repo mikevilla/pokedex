@@ -237,8 +237,12 @@ const Pokemon: React.FC = ()=> {
 
     }
 
+
+
     // build details jsx
     const buildDetails = () => {
+
+        console.log('evolutionChain ', evolutionChain);
 
         return (
             <>
@@ -255,18 +259,17 @@ const Pokemon: React.FC = ()=> {
                             <Grid item
                                     xs={12}
                             >
-                                ONE
+                                {evolutionChain.map(()=>{
+                                    return (
+                                        <>
+                                            <Paper elevation={3}>
+                                            </Paper>
+                                        </>
+                                    )
+                                }) }
+
                             </Grid>
-                            <Grid item
-                                  xs={12}
-                            >
-                                TWO
-                            </Grid>
-                            <Grid item
-                                  xs={12}
-                            >
-                                THREE
-                            </Grid>
+
                         </Paper>
                     </Grid>
                     <Grid item
