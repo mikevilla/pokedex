@@ -58,12 +58,29 @@ const Pokemon: React.FC = ()=> {
 
     const initEvolutionChain: EvolutionChainType[] = [];
 
+
     type SpeciesType = {
-        evolution_chain: { url: string }
+        evolution_chain: { url: string },
+        capture_rate: string,
+        egg_groups: any[],
+        habitat: {
+            name: string,
+            url: string
+        },
+        growth_rate: {
+            name: string,
+            url: string
+        }
+        gender_rate: string
     }
 
     const initSpeciesData: SpeciesType = {
-        evolution_chain: { url: "" }
+        evolution_chain: { url: "" },
+        capture_rate: "",
+        egg_groups: [],
+        habitat: { name: "", url:  "" },
+        growth_rate: { name: "", url:  "" },
+        gender_rate: ""
     }
 
     // Pokemon Main Details
@@ -73,6 +90,7 @@ const Pokemon: React.FC = ()=> {
 
     // Pokemon Species Details
     const [speciesData, setSpeciesData] = useState<SpeciesType>(initSpeciesData);
+    const { capture_rate, egg_groups, habitat, growth_rate, gender_rate } = speciesData;
 
     type Evolution = {
         id: string | undefined,
@@ -209,7 +227,7 @@ const Pokemon: React.FC = ()=> {
                             variant="determinate"
                             value={normalise(item.base_stat)}
                             sx={{
-                                "LinearProgress-thickness": "16px"
+                                "LinearProgressThickness": "20px"
                             }}/>
                     </>
                 )
@@ -245,8 +263,6 @@ const Pokemon: React.FC = ()=> {
     const buildDetails = () => {
 
         const displayEvolution = [...evolutionChain].reverse();
-        console.log('displayEvolution  ', displayEvolution);
-
         return (
             <>
                 <Grid container spacing={2}>
@@ -313,15 +329,23 @@ const Pokemon: React.FC = ()=> {
                                 <Paper elevation={1}>
                                     <div>Height: { height }</div>
                                     <div>Weight { weight }</div>
-                                    <div>Abilities: { abilities.map((item)=>{
+
+                                    <div>Abilities: {abilities.map((item)=>{
                                         return (
-                                            <div key={item.name}>{item.name}</div>
-                                        )
-                                    })}</div>
-                                    <div>Egg Groups</div>
-                                    <div>Gender Ratio</div>
-                                    <div>Catch Rate</div>
-                                    <div>Category</div>
+                                            <>
+                                                {item.ability.name}
+                                            </>)
+                                    }) } </div>
+                                    <div>Egg Groups: {egg_groups.map((item)=>{
+                                        return (
+                                            <>
+                                                {item.name}
+                                            </>)
+                                    }) } </div>
+                                    <div>Habitat {habitat.name} </div>
+                                    <div>Growth Rate {growth_rate.name} </div>
+                                    <div>Gender Ratio {gender_rate} </div>
+                                    <div>Capture Rate { Math.round(((parseInt(capture_rate)/255) * 100)) } % </div>
 
                                 </Paper>
                             </Grid>
