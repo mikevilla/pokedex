@@ -28,10 +28,15 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
 
                         // Use string includes to determine if the search term is included in the current name of the Pokemon
                         return  (
-                            pokemonData[pokemonId].name.includes(filterSearch) && <PokemonCard pokemonId={pokemonId}/>
+                            pokemonData[pokemonId].name.includes(filterSearch) &&
+                            <>
+                                <Grid item xs={12} sm={3}>
+                                     <PokemonCard pokemonId={pokemonId}/>
+                                </Grid>
+                            </>
                         )
                     })
-                }
+                })
             </Grid>
             ) : (
                 <CircularProgress />

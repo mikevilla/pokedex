@@ -29,7 +29,7 @@ const PokemonCard = (props: any) => {
         }
 
         return (
-            <Grid item xs={12} sm={3} key={pokemonId}>
+            <React.Fragment key={pokemonId}>
                 <NavLink className={styles.navLink} to={`/pokemon/${pokemonId}`}>
                     <Paper elevation={12} sx={backgroundStyle}>
                         <div className={styles.blur}>
@@ -47,7 +47,7 @@ const PokemonCard = (props: any) => {
                         </div>
                     </Paper>
                 </NavLink>
-            </Grid>
+            </React.Fragment >
         )
 
 }

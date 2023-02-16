@@ -8,6 +8,7 @@ import { pokemonActions } from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import Header from "../Header/Header";
 import { COLOR_MATCH } from "../../constants/pokemon";
+import PokemonCard from "../PokemonCard/PokemonCard";
 
 const Pokemon: React.FC = ()=> {
 
@@ -51,6 +52,7 @@ const Pokemon: React.FC = ()=> {
     }
 
     type EvolutionChainType = {
+        id: string | undefined;
         name: string;
     }
 
@@ -242,7 +244,8 @@ const Pokemon: React.FC = ()=> {
     // build details jsx
     const buildDetails = () => {
 
-        console.log('evolutionChain ', evolutionChain);
+        const displayEvolution = [...evolutionChain].reverse();
+        console.log('displayEvolution  ', displayEvolution);
 
         return (
             <>
@@ -256,19 +259,15 @@ const Pokemon: React.FC = ()=> {
                     >
                         <Paper elevation={6}>
 
-                            <Grid item
-                                    xs={12}
-                            >
-                                {evolutionChain.map(()=>{
+                                {displayEvolution.map((pokemon)=>{
                                     return (
                                         <>
                                             <Paper elevation={3}>
+                                                <PokemonCard pokemonId={pokemon.id}/>
                                             </Paper>
                                         </>
                                     )
                                 }) }
-
-                            </Grid>
 
                         </Paper>
                     </Grid>
@@ -365,15 +364,6 @@ const Pokemon: React.FC = ()=> {
             {pokemonDetails !== undefined && pokemonDetails && buildDetails()}
             {pokemonDetails.name === "" && <div>Pokemon Not Found</div>}
 
-
-            <div>POKEMON DETAILS PAGE</div>
-
-            <Paper elevation={3} />
-
-            <div>Pokemon ID is = {params.pokemonId}</div>
-            <div>
-                <NavLink to='/'>Back to Index Page</NavLink>
-            </div>
         </>
     );
 }
