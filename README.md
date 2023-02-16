@@ -65,3 +65,6 @@ Launches the test runner in the interactive watch mode.\
 * form validation
 
 * API data validation
+
+### Issues to be taken care in future versions
+* make redirect more nicely when a user enters in an invalid pokemonID

@@ -57,6 +57,7 @@ const Header: React.FC = (props) => {
                             }
                         </Grid>
                         <Grid item xs={2}>
+                            { history.length > 0 && <div>Recently Searched...</div> }
                             <AvatarGroup max={30}>
                                 {history.map((pokemon)=>{
                                     return (
