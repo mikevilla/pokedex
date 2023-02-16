@@ -10,8 +10,6 @@ import {pokemonActions} from "../pokemonSlice";
 
 const Header: React.FC = (props) => {
 
-    // const [filterTerm, setFilterTerm] = useState("");
-    const filterSearch = useAppSelector(state => state.pokemon.filterSearch);
     const navigate = useNavigate();
 
     const optionsData = useAppSelector(state => state.pokemon.optionsData);
@@ -22,17 +20,14 @@ const Header: React.FC = (props) => {
         target: { value: string }
     }) => {
 
-        console.log('event ', event.target );
         const term = event.target.value.toLowerCase();
         dispatch(pokemonActions.updateFilterSearch(term));
 
         const findPokemon = optionsData.find(element => element.name === term)
-        console.log('findPokemon = ', findPokemon);
 
         if (findPokemon) {
             const pokemonSearched = {...findPokemon}
             pokemonSearched.searched = true;
-            console.log('SELECTED NEW VALUE ADDING SEARCHED ', pokemonSearched);
             dispatch(pokemonActions.updateHistory(pokemonSearched));
             navigate(`/pokemon/${findPokemon.id}`)
         }

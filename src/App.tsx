@@ -7,9 +7,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 import { POKEMON_LIMIT } from './constants/pokemon'
 
-
 const App = () => {
-
 
     type ObjectType = {
         [key: string]:  {
@@ -47,11 +45,8 @@ const App = () => {
         axios
             .get(url)
             .then((response)=>{
-                console.log('*** VALUE OF INDEX CALL IS ', response)
                 const { data } = response;
                 const { results } = data;
-
-                console.log('BEFORE optionsData ', optionsData);
 
                 // build out the new object by looping through api data
                 results.forEach((pokemon: any, index: number)=>{
@@ -68,8 +63,6 @@ const App = () => {
 
                 })
 
-                console.log('FINAL pokemonData ', pokemonData);
-                console.log('FINAL *** CHECK checkoptionsDataArray, ', optionsData);
                 optionsData.sort((a, b) => {
                     const nameA = a.name.toUpperCase();
                     const nameB = b.name.toUpperCase();
@@ -87,9 +80,6 @@ const App = () => {
             })
 
     }, [pokemonData, optionsData])
-
-    console.log('APP pokemonData ', pokemonData);
-    console.log('APP optionsData ', optionsData);
 
     const router = createBrowserRouter( [
         { path: '/', element: <Pokedex pokemonData={pokemonData} optionsData={optionsData } />},
