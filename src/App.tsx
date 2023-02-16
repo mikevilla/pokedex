@@ -23,16 +23,17 @@ const App = () => {
     const dispatch = useAppDispatch();
 
     // This function is in case we need to switch to another source later.
-    const generateMainAssetUrl = (inputId: string | null) => {
+    const generateMainAssetUrl = (inputId: string | undefined | null) => {
 
-        // if (inputId && inputId.length === 4) {
-        //     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
-        // } else if (inputId) {
-        //     let formattedId: string = inputId.padStart(3, '0');
-        //     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${formattedId}.png`
-        // }
+        let url:string = "";
 
-        return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${inputId}.svg`
+        if (parseInt(inputId!) <= 649) {
+            url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${inputId}.svg`
+        } else {
+            url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
+        }
+
+        return url;
     }
 
     useEffect(() => {
