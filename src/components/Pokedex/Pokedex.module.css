@@ -11,7 +11,10 @@ a:active {
 
 
 .cardMedia {
-    margin: auto;
+    margin-top: 15%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: auto;
     width: 130px;
     height: 130px;
 }
@@ -79,6 +82,7 @@ a:active {
 
 .toolbar {
     padding: 15px;
+    background-color: #e53d3d;
 }
 
 .pokemonTagContainer {

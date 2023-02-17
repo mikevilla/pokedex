@@ -3,6 +3,16 @@ a:active {
     color: lightskyblue;
 }
 
+.arrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.arrowSize {
+    transform: scale(1.1);
+}
+
 
 .avatarSection {
     display: flex;
@@ -10,6 +20,10 @@ a:active {
     justify-content: center;
 }
 
+
+.evolutionContainer {
+    margin-top: 35px;
+}
 
 .grid {
     padding-top: 20px;
@@ -27,6 +41,12 @@ a:active {
 .cardContent {
     font-family: Helvetica, sans-serif;
     text-align: center;
+}
+
+
+.paper {
+    background-color: #FAF7F1 !important;
+    flex-shrink: 3; /* default 1 */
 }
 
 .pokemonNumber {
