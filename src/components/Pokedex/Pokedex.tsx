@@ -30,13 +30,13 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                         return  (
                             pokemonData[pokemonId].name.includes(filterSearch) &&
                             <>
-                                <Grid item xs={12} sm={3}>
+                                <Grid item xs={12} sm={6} md={3} lg={2} >
                                      <PokemonCard pokemonId={pokemonId}/>
                                 </Grid>
                             </>
                         )
                     })
-                })
+                }
             </Grid>
             ) : (
                 <CircularProgress />

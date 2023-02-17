@@ -278,8 +278,10 @@ const Pokemon: React.FC = ()=> {
     // build details jsx
     const buildDetails = () => {
 
-        const profileStyles = {
+        const sectionStyles = {
+            margin: '10px',
             background: '#5395f1',
+            borderRadius: '15px'
         }
 
 
@@ -292,25 +294,27 @@ const Pokemon: React.FC = ()=> {
             <>
                 <Grid container spacing={2}>
                     <Grid container
-                          direction="row"
-                          justifyContent="center"
-                          alignItems="center"
+                          direction="column"
+                          justifyContent='flex-end'
+                          alignItems='center'
                           xs={12}
                           md={2}
+                          className={styles.evolutionContainer}
                     >
-                        <Paper elevation={6}>
-
-                                {displayEvolution.map((pokemon)=>{
-                                    return (
-                                        <>
-                                            <Paper elevation={3}>
-                                                <PokemonCard pokemonId={pokemon.id}/>
-                                            </Paper>
-                                            <FileUploadTwoToneIcon fontSize="large" />
-                                        </>
-                                    )
-                                }) }
-
+                        <Typography variant='h5'>Evolution Chain</Typography>
+                        <Paper className={styles.paper} elevation={0}>
+                            {displayEvolution.map((pokemon)=>{
+                                return (
+                                    <>
+                                        <div className={styles.paper}>
+                                            <PokemonCard pokemonId={pokemon.id}/>
+                                        </div>
+                                        <div className={styles.arrow}>
+                                            <FileUploadTwoToneIcon className={styles.arrowSize}/>
+                                        </div>
+                                    </>
+                                )
+                            }) }
                         </Paper>
                     </Grid>
                     <Grid item
@@ -318,7 +322,7 @@ const Pokemon: React.FC = ()=> {
                           alignItems="center"
                           xs={12}
                           md={4}>
-                        <Paper elevation={6}>
+                        <Paper elevation={6} style={{margin: '10px'}}>
                             <Grid container
                                 direction="column"
                                 justifyContent="center"
@@ -348,7 +352,7 @@ const Pokemon: React.FC = ()=> {
                     <Grid item
                         xs={12}
                         md={6}>
-                        <Card elevation={1} style={profileStyles} >
+                        <Card elevation={8} style={sectionStyles} >
                         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                             <Grid item xs={6}>
                                 <CardContent>
