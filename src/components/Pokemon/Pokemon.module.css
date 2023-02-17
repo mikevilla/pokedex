@@ -29,11 +29,29 @@ a:active {
     text-align: center;
 }
 
+.pokemonNumber {
+    color: #616161;
+    margin-right: 20px;
+}
+
+.pokemonName {
+    color: black;
+}
+
 .pokemonDetails {
     height: 300px;
     width: auto;
 }
 
+.profileHeader {
+    color: whitesmoke;
+}
+
 .statsSection {
     width: 100%
+}
+
+.tag {
+    margin-right: 5px;
+    border-radius: 5px !important;
 }

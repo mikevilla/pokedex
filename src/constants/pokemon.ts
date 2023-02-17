@@ -1,4 +1,7 @@
+export const DECIMETER = 3.048
+export const HECTOGRAM = 4.536
 export const POKEMON_LIMIT = 807;
+
 
 type pokemonType = {
     [key: string]: "default" | "success" | "primary" | "secondary" | "error" | "info" | "warning" | undefined

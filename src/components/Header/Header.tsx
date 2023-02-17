@@ -2,6 +2,7 @@ import {AppBar, Avatar, AvatarGroup, Grid, Toolbar, Tooltip} from "@mui/material
 import styles from "../Pokedex/Pokedex.module.css";
 import logo from "../../img/pokemon_logo_small.png";
 import SearchIcon from "@mui/icons-material/Search";
+import {Typography } from '@mui/material';
 import Search from "../Search/Search";
 import { NavLink, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
@@ -57,7 +58,7 @@ const Header: React.FC = (props) => {
                             }
                         </Grid>
                         <Grid item xs={2}>
-                            { history.length > 0 && <div>Recently Searched...</div> }
+                            { history.length > 0 && <Typography>Recently Searched...</Typography> }
                             <AvatarGroup max={30}>
                                 {history.map((pokemon)=>{
                                     return (
