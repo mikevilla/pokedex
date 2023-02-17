@@ -23,7 +23,6 @@ a:active {
     font-family: Helvetica, sans-serif;
     color: white;
     text-align: center;
-    /*background-color:rgba(0, 0, 0, 0.0005);*/
 }
 
 .pokemonDetails {
@@ -39,7 +38,7 @@ a:active {
 
 .logo {
     display: flex;
-    flex-shrink: 5;
+    height: 90%
 }
 
 .blur {
@@ -89,7 +88,7 @@ a:active {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.7);
+    /*background: rgba(255, 255, 255, 0.7);*/
     padding-top: 7px;
     margin-top: 20px;
     border-radius: 2px;
@@ -104,7 +103,8 @@ a:active {
 .pokemonId, .pokemonName {
     text-decoration: none;
     font-size: 20px;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    color: #293942;
+    font-weight: bolder;
+    font-family: 'Montserrat' ,sans-serif;
+    /*color: #293942;*/
+    color: black;
 }

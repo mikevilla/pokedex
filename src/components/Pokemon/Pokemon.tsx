@@ -295,13 +295,13 @@ const Pokemon: React.FC = ()=> {
                 <Grid container spacing={2}>
                     <Grid container
                           direction="column"
-                          justifyContent='flex-end'
+                          justifyContent='flex-start'
                           alignItems='center'
                           xs={12}
                           md={2}
                           className={styles.evolutionContainer}
                     >
-                        <Typography variant='h5'>Evolution Chain</Typography>
+                        <Typography variant='h5' className={styles.evolutionHeader}>Evolution Chain</Typography>
                         <Paper className={styles.paper} elevation={0}>
                             {displayEvolution.map((pokemon)=>{
                                 return (
@@ -331,7 +331,7 @@ const Pokemon: React.FC = ()=> {
                                 <Paper elevation={0}>
                                     <Typography variant='h4'>
                                         <span className={styles.pokemonNumber}>#{id}</span>
-                                        <span className={styles.pokemonName}>{name.charAt(0).toUpperCase() + name.slice(1)}</span></Typography>
+                                        <span className={styles.pokemonName}>{name}</span></Typography>
                                 </Paper>
                                 <Paper elevation={1}>
                                     <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
@@ -345,7 +345,7 @@ const Pokemon: React.FC = ()=> {
                                   justifyContent="center"
                                   alignItems="center"
                                   xs={12}>
-                                    { flavor_text_entries.length > 0 && <Typography align='center' >"{flavor_text_entries[0].flavor_text}"</Typography> }
+                                    { flavor_text_entries.length > 0 && <Typography align='center' className={styles.flavorText} >"{flavor_text_entries[0].flavor_text}"</Typography> }
                             </Grid>
                         </Paper>
                     </Grid>
