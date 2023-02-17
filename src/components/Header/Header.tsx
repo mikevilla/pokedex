@@ -59,7 +59,7 @@ const Header: React.FC = (props) => {
                         </Grid>
                         <Grid item xs={2}>
                             { history.length > 0 && <Typography className={styles.history}>Recently Searched...</Typography> }
-                            <AvatarGroup max={30}>
+                            <AvatarGroup max={10}>
                                 {history.map((pokemon)=>{
                                     return (
                                         <Tooltip title={pokemon.name} arrow>
