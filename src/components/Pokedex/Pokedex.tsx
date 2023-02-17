@@ -1,11 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import {
-    CardContent,
     CircularProgress,
-    CardMedia,
     Grid,
-    Paper, LinearProgress,
 } from '@mui/material';
 import styles from '../Pokedex/Pokedex.module.css'
 import { useAppSelector } from '../../app/hooks'
