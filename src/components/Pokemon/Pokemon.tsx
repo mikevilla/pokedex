@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {NavLink, useNavigate, useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import styles from './Pokemon.module.css'
 import { CircularProgress, Divider, Tooltip, IconButton } from '@mui/material';
-import FileUploadTwoToneIcon from '@mui/icons-material/FileUploadTwoTone';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import InfoIcon from '@mui/icons-material/Info';
 import axios from 'axios';
 import { Card, CardContent, Chip, LinearProgress, Grid, Paper, Typography } from '@mui/material';
@@ -310,7 +310,7 @@ const Pokemon: React.FC = ()=> {
                                             <PokemonCard pokemonId={pokemon.id}/>
                                         </div>
                                         <div className={styles.arrow}>
-                                            <FileUploadTwoToneIcon className={styles.arrowSize}/>
+                                            <KeyboardDoubleArrowUpIcon className={styles.arrowSize}/>
                                         </div>
                                     </>
                                 )
