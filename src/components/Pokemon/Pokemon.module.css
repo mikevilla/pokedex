@@ -96,6 +96,7 @@ a:active {
 .pokemonDetails {
     height: 300px;
     width: auto;
+    max-width: 400px;
 }
 
 .pokemonHeader {
