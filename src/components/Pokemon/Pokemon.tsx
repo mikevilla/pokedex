@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {NavLink, useNavigate, useParams} from 'react-router-dom'
 import styles from './Pokemon.module.css'
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Divider, Tooltip, IconButton } from '@mui/material';
 import FileUploadTwoToneIcon from '@mui/icons-material/FileUploadTwoTone';
+import InfoIcon from '@mui/icons-material/Info';
 import axios from 'axios';
 import { Card, CardContent, Chip, LinearProgress, Grid, Paper, Typography } from '@mui/material';
 import { pokemonActions } from "../pokemonSlice";
@@ -150,18 +151,16 @@ const Pokemon: React.FC = ()=> {
         })
 
         return (
-            <>
-                { moves.map((item)=> {
-                    return (
-                        <React.Fragment key={item.move.name}>
-                            <Chip label={item.move.name} variant="outlined" color="primary" size="small" />
-                        </React.Fragment>
-                    )
-                } )}
-            </>
+            <div className={styles.movesSection}>
+                <div className={styles.movesListContainer}>
+                    {moves.map((item) => (
+                        <div className={styles.movesListItem} key={item.move.name}>
+                            {item.move.name}
+                        </div>
+                    ))}
+                </div>
+            </div>
         )
-
-
     })
 
     // API call to get the Pokemon Details
@@ -282,11 +281,10 @@ const Pokemon: React.FC = ()=> {
             borderRadius: '15px'
         }
 
-        const statsSectionStyles = {
-            margin: '10px',
-            background: 'FAF7F1',
+        const sectionStyles = {
+            marginTop: '7px',
+            background: '#FAF7F1',
         }
-
 
         const convertedFeet = (parseInt(height) / DECIMETER);
         const feet = Math.floor(convertedFeet);
@@ -334,14 +332,17 @@ const Pokemon: React.FC = ()=> {
                                 <Paper elevation={0}>
                                     <Typography variant='h4' className={styles.pokemonHeader}>
                                         <span className={styles.pokemonNumber}>#{id}</span>
-                                        <span className={styles.pokemonName}>{name}</span></Typography>
+                                        <span className={styles.pokemonName}>{name}</span>
+                                    </Typography>
                                 </Paper>
                                 <Paper elevation={0}>
                                     <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
                                 </Paper>
                                 <Paper elevation={0}>
                                     <Typography variant='h6'>
-                                        <span className={styles.typesHeader}>Types</span></Typography>
+                                        <span className={styles.typesHeader}>Types</span>
+                                    </Typography>
+                                    <Divider/>
                                     { showTypes(types) }
                                 </Paper>
                             </Grid>
@@ -411,32 +412,38 @@ const Pokemon: React.FC = ()=> {
                                 </Grid>
                             </Grid>
                         </Card>
-                        <Card elevation={2} style={statsSectionStyles} >
-                            <Grid
-                                container
-                                direction="row"
-                                justifyContent="flex-start"
-                                alignItems="stretch"
-                                xs={12}>
-                                <Card elevation={1}>
-                                    <Typography> STATS Base Stats where 150 generally the max STATS Base Stats where 150 generally the maxSTATS Base Stats where 150 generally the max </Typography>
-
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <Card style={sectionStyles} elevation={0}>
+                                    <Typography variant='h6'>
+                                        <span className={styles.typesHeader}>Stats
+                                            <Tooltip title="Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.">
+                                              <IconButton>
+                                                <InfoIcon />
+                                              </IconButton>
+                                            </Tooltip>
+                                        </span>
+                                        <Divider/>
+                                    </Typography>
                                     { buildStatsSection(stats) }
-
                                 </Card>
                             </Grid>
-                        </Card>
-
-                    </Grid>
-                    <Grid item
-                          direction="row"
-                          justifyContent="center"
-                          alignItems="center"
-                          xs={12}
-                          md={12}>
-                        <Paper elevation={6}>MOVES
-                            { showMoves(moves) }
-                        </Paper>
+                            <Grid item xs={12} md={6}>
+                                <Card style={sectionStyles} elevation={0}>
+                                    <Typography variant='h6'>
+                                        <span className={styles.typesHeader}>Moves
+                                            <Tooltip title="Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.">
+                                              <IconButton>
+                                                <InfoIcon />
+                                              </IconButton>
+                                            </Tooltip>
+                                        </span>
+                                        <Divider/>
+                                    </Typography>
+                                    { showMoves(moves) }
+                                </Card>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </>
@@ -447,7 +454,6 @@ const Pokemon: React.FC = ()=> {
     return (
         <>
             <Header />
-
             {pokemonDetails === undefined && <CircularProgress/>}
             {pokemonDetails !== undefined && pokemonDetails && buildDetails()}
             {pokemonDetails.name === "" && <div>Pokemon Not Found</div>}
@@ -455,6 +461,5 @@ const Pokemon: React.FC = ()=> {
         </>
     );
 }
-
 
 export default Pokemon;
