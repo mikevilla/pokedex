@@ -241,12 +241,13 @@ const Pokemon: React.FC = ()=> {
             stats.map((item)=> {
                 return (
                     <>
-                        <Typography>{item.stat.name} :  {item.base_stat}</Typography>
+                        <Typography className={styles.statsItems}>{item.stat.name} :  {item.base_stat}</Typography>
                         <LinearProgress
                             variant="determinate"
                             value={normalise(item.base_stat)}
                             sx={{
-                                "LinearProgressThickness": "20px"
+                                height: '25px',
+                                width: '100%'
                             }}/>
                     </>
                 )
@@ -275,10 +276,15 @@ const Pokemon: React.FC = ()=> {
     // build details jsx
     const buildDetails = () => {
 
-        const sectionStyles = {
+        const bioSectionStyles = {
             margin: '10px',
             background: '#5395f1',
             borderRadius: '15px'
+        }
+
+        const statsSectionStyles = {
+            margin: '10px',
+            background: 'FAF7F1',
         }
 
 
@@ -351,73 +357,76 @@ const Pokemon: React.FC = ()=> {
                     <Grid item
                         xs={12}
                         md={6}>
-                        <Card elevation={8} style={sectionStyles} >
-                        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                            <Grid item xs={6}>
-                                <CardContent>
-                                    <Typography className={styles.profileHeader}>Height:</Typography>
-                                    <Typography variant='h6'>{ feet }' { inches }"</Typography>
-                                    <Typography className={styles.profileHeader}>Weight:</Typography>
-                                    <Typography variant='h6'>{ (parseInt(weight) / HECTOGRAM).toFixed(1) } lbs</Typography>
+                        <Card elevation={8} style={bioSectionStyles} >
+                            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                                <Grid item xs={6}>
+                                    <CardContent>
+                                        <Typography className={styles.profileHeader}>Height:</Typography>
+                                        <Typography variant='h6'>{ feet }' { inches }"</Typography>
+                                        <Typography className={styles.profileHeader}>Weight:</Typography>
+                                        <Typography variant='h6'>{ (parseInt(weight) / HECTOGRAM).toFixed(1) } lbs</Typography>
 
-                                </CardContent>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <CardContent>
-                                    <Typography className={styles.profileHeader}>Growth Rate</Typography>
-                                    <Typography variant='h6'>{growth_rate.name} </Typography>
-                                    <Typography className={styles.profileHeader}>Gender Ratio</Typography>
-                                    <Typography variant='h6'>{gender_rate} </Typography>
-                                </CardContent>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <CardContent>
-                                    { habitat && (
-                                        <>
-                                            <Typography className={styles.profileHeader}>Habitat</Typography>
-                                            <Typography variant='h6'>{habitat.name} </Typography>
-                                        </>
-                                        )
-                                    }
-                                    <Typography className={styles.profileHeader}>Capture Rate</Typography>
-                                    <Typography variant='h6'>{ Math.round(((parseInt(capture_rate)/255) * 100)) } % </Typography>
-                                </CardContent>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <CardContent>
-                                    <Typography className={styles.profileHeader}>Abilities: </Typography>
-
-                                    {abilities.map((item)=>{
-                                        return (
+                                    </CardContent>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <CardContent>
+                                        <Typography className={styles.profileHeader}>Growth Rate</Typography>
+                                        <Typography variant='h6'>{growth_rate.name} </Typography>
+                                        <Typography className={styles.profileHeader}>Gender Ratio</Typography>
+                                        <Typography variant='h6'>{gender_rate} </Typography>
+                                    </CardContent>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <CardContent>
+                                        { habitat && (
                                             <>
-                                                <Chip className={styles.tag} label={item.ability.name}/>
-                                            </>)
-                                    }) }
-                                    <Typography className={styles.profileHeader}>Egg Groups:</Typography>
+                                                <Typography className={styles.profileHeader}>Habitat</Typography>
+                                                <Typography variant='h6'>{habitat.name} </Typography>
+                                            </>
+                                            )
+                                        }
+                                        <Typography className={styles.profileHeader}>Capture Rate</Typography>
+                                        <Typography variant='h6'>{ Math.round(((parseInt(capture_rate)/255) * 100)) } % </Typography>
+                                    </CardContent>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <CardContent>
+                                        <Typography className={styles.profileHeader}>Abilities: </Typography>
 
-                                    {egg_groups.map((item)=>{
-                                        return (
-                                            <>
-                                                <Chip className={styles.tag} label={item.name}/>
-                                            </>)
-                                    }) }
-                                </CardContent>
+                                        {abilities.map((item)=>{
+                                            return (
+                                                <>
+                                                    <Chip className={styles.tag} label={item.ability.name}/>
+                                                </>)
+                                        }) }
+                                        <Typography className={styles.profileHeader}>Egg Groups:</Typography>
+
+                                        {egg_groups.map((item)=>{
+                                            return (
+                                                <>
+                                                    <Chip className={styles.tag} label={item.name}/>
+                                                </>)
+                                        }) }
+                                    </CardContent>
+                                </Grid>
                             </Grid>
-                        </Grid>
                         </Card>
+                        <Card elevation={2} style={statsSectionStyles} >
                             <Grid
                                 container
                                 direction="row"
                                 justifyContent="flex-start"
-                                alignItems="flex-start"
+                                alignItems="stretch"
                                 xs={12}>
-                                <Paper className={styles.statsSection} elevation={1}>
-                                    <Typography> STATS Base Stats where 150 generally the max STATS Base Stats where 150 generally the max </Typography>
+                                <Card elevation={1}>
+                                    <Typography> STATS Base Stats where 150 generally the max STATS Base Stats where 150 generally the maxSTATS Base Stats where 150 generally the max </Typography>
 
                                     { buildStatsSection(stats) }
 
-                                </Paper>
+                                </Card>
                             </Grid>
+                        </Card>
+
                     </Grid>
                     <Grid item
                           direction="row"

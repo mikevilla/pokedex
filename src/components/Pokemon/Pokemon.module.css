@@ -90,6 +90,14 @@ a:active {
     text-transform: uppercase;
 }
 
+.statsItems {
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
 .statsSection {
     width: 100%
 }

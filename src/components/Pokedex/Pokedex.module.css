@@ -82,6 +82,7 @@ a:active {
 .searchInput {
     width: 300px !important;
     margin: 225px;
+    color: white !important;
 }
 
 .toolbar {
@@ -93,7 +94,6 @@ a:active {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /*background: rgba(255, 255, 255, 0.7);*/
     padding-top: 7px;
     margin-top: 20px;
     border-radius: 2px;
