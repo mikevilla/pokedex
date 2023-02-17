@@ -58,7 +58,7 @@ const Header: React.FC = (props) => {
                             }
                         </Grid>
                         <Grid item xs={2}>
-                            { history.length > 0 && <Typography>Recently Searched...</Typography> }
+                            { history.length > 0 && <Typography className={styles.history}>Recently Searched...</Typography> }
                             <AvatarGroup max={30}>
                                 {history.map((pokemon)=>{
                                     return (

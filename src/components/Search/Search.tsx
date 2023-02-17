@@ -18,6 +18,7 @@ const Search = (props: any) => {
                 freeSolo
                 id="PokemonSearch"
                 disableClearable
+                autoSelect
                 options={optionsData.map((option: any) => { if (option) { return option.name} })}
                 groupBy={(name) => {
                         let header: string = '';
