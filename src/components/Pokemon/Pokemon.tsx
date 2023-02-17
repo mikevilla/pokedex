@@ -256,19 +256,16 @@ const Pokemon: React.FC = ()=> {
     }
 
     const showTypes = (types: any[]) => {
-
-
         return (
             types.map((info: any )=> {
-
-                    const { type } = info;
-                    const { name } = type;
-                    return (
-                        <React.Fragment key={name}>
-                            <Chip key={name} className={styles.tag} color={COLOR_MATCH[name]} label={name}></Chip>
-                        </React.Fragment>
-                    )
-            })
+                const { type } = info;
+                const { name } = type;
+                return (
+                    <React.Fragment key={name}>
+                        <Chip key={name} className={styles.tag} color={COLOR_MATCH[name]} label={name}></Chip>
+                    </React.Fragment>
+                )
+        })
         )
 
     }
@@ -329,14 +326,16 @@ const Pokemon: React.FC = ()=> {
                                 alignItems="center"
                                 xs={12}>
                                 <Paper elevation={0}>
-                                    <Typography variant='h4'>
+                                    <Typography variant='h4' className={styles.pokemonHeader}>
                                         <span className={styles.pokemonNumber}>#{id}</span>
                                         <span className={styles.pokemonName}>{name}</span></Typography>
                                 </Paper>
-                                <Paper elevation={1}>
+                                <Paper elevation={0}>
                                     <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
                                 </Paper>
                                 <Paper elevation={0}>
+                                    <Typography variant='h6'>
+                                        <span className={styles.typesHeader}>Types</span></Typography>
                                     { showTypes(types) }
                                 </Paper>
                             </Grid>
