@@ -36,6 +36,7 @@ const PokemonCard = (props: any) => {
                             <CardMedia
                                 className={styles.cardMedia}
                                 image={sprite}
+                                sx={{ backgroundSize: "contain" }}
                             >
                             </CardMedia>
                             <CardContent className={styles.cardContent}>
