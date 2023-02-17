@@ -278,7 +278,6 @@ const Pokemon: React.FC = ()=> {
         const bioSectionStyles = {
             margin: '10px',
             background: '#5395f1',
-            borderRadius: '15px'
         }
 
         const sectionStyles = {
