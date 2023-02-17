@@ -456,8 +456,6 @@ const Pokemon: React.FC = ()=> {
             <Header />
             {pokemonDetails === undefined && <CircularProgress/>}
             {pokemonDetails !== undefined && pokemonDetails && buildDetails()}
-            {pokemonDetails.name === "" && <div>Pokemon Not Found</div>}
-
         </>
     );
 }
