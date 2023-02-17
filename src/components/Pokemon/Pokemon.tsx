@@ -4,11 +4,11 @@ import styles from './Pokemon.module.css'
 import { CircularProgress } from '@mui/material';
 import FileUploadTwoToneIcon from '@mui/icons-material/FileUploadTwoTone';
 import axios from 'axios';
-import { Chip, LinearProgress, Grid, Paper } from '@mui/material';
+import { Card, CardContent, Chip, LinearProgress, Grid, Paper, Typography } from '@mui/material';
 import { pokemonActions } from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import Header from "../Header/Header";
-import { COLOR_MATCH } from "../../constants/pokemon";
+import {COLOR_MATCH, DECIMETER, HECTOGRAM} from "../../constants/pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import { POKEMON_LIMIT } from '../../constants/pokemon'
 
@@ -74,7 +74,12 @@ const Pokemon: React.FC = ()=> {
     type SpeciesType = {
         evolution_chain: { url: string },
         capture_rate: string,
+        color: {
+            name: string,
+            url: string
+        },
         egg_groups: any[],
+        flavor_text_entries: any[],
         habitat: {
             name: string,
             url: string
@@ -89,7 +94,9 @@ const Pokemon: React.FC = ()=> {
     const initSpeciesData: SpeciesType = {
         evolution_chain: { url: '' },
         capture_rate: '',
+        color: { name: '', url:  '' },
         egg_groups: [],
+        flavor_text_entries: [],
         habitat: { name: '', url:  '' },
         growth_rate: { name: '', url:  '' },
         gender_rate: ''
@@ -102,7 +109,7 @@ const Pokemon: React.FC = ()=> {
 
     // Pokemon Species Details
     const [speciesData, setSpeciesData] = useState<SpeciesType>(initSpeciesData);
-    const { capture_rate, egg_groups, habitat, growth_rate, gender_rate } = speciesData;
+    const { capture_rate, color, egg_groups, flavor_text_entries, habitat, growth_rate, gender_rate } = speciesData;
 
     type Evolution = {
         id: string | undefined,
@@ -234,7 +241,7 @@ const Pokemon: React.FC = ()=> {
             stats.map((item)=> {
                 return (
                     <>
-                        <div>{item.stat.name} :  {item.base_stat}</div>
+                        <Typography>{item.stat.name} :  {item.base_stat}</Typography>
                         <LinearProgress
                             variant="determinate"
                             value={normalise(item.base_stat)}
@@ -250,9 +257,6 @@ const Pokemon: React.FC = ()=> {
 
     const showTypes = (types: any[]) => {
 
-        const typeStyle = {
-            marginRight: `15px`
-        }
 
         return (
             types.map((info: any )=> {
@@ -261,7 +265,7 @@ const Pokemon: React.FC = ()=> {
                     const { name } = type;
                     return (
                         <React.Fragment key={name}>
-                            <Chip key={name} sx={typeStyle} color={COLOR_MATCH[name]} label={name}></Chip>
+                            <Chip key={name} className={styles.tag} color={COLOR_MATCH[name]} label={name}></Chip>
                         </React.Fragment>
                     )
             })
@@ -273,6 +277,15 @@ const Pokemon: React.FC = ()=> {
 
     // build details jsx
     const buildDetails = () => {
+
+        const profileStyles = {
+            background: '#5395f1',
+        }
+
+
+        const convertedFeet = (parseInt(height) / DECIMETER);
+        const feet = Math.floor(convertedFeet);
+        const inches = Math.round((convertedFeet - feet) * 12);
 
         const displayEvolution = [...evolutionChain].reverse();
         return (
@@ -311,60 +324,84 @@ const Pokemon: React.FC = ()=> {
                                 justifyContent="center"
                                 alignItems="center"
                                 xs={12}>
-                                <Paper elevation={1}>
-                                    <div>#{id}{name}</div>
+                                <Paper elevation={0}>
+                                    <Typography variant='h4'>
+                                        <span className={styles.pokemonNumber}>#{id}</span>
+                                        <span className={styles.pokemonName}>{name.charAt(0).toUpperCase() + name.slice(1)}</span></Typography>
                                 </Paper>
                                 <Paper elevation={1}>
                                     <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
                                 </Paper>
-                                <Paper >
+                                <Paper elevation={0}>
                                     { showTypes(types) }
                                 </Paper>
                             </Grid>
                             <Grid container
-                                  direction="row"
+                                  direction="column"
                                   justifyContent="center"
                                   alignItems="center"
                                   xs={12}>
-                                <Paper elevation={1}>
-                                    "It is said that Charizards fire burns hotter if it has experienced harsh battles."
-                                </Paper>
+                                    { flavor_text_entries.length > 0 && <Typography align='center' >"{flavor_text_entries[0].flavor_text}"</Typography> }
                             </Grid>
                         </Paper>
                     </Grid>
                     <Grid item
                         xs={12}
                         md={6}>
-                        <Paper elevation={6}>
-                            <Grid
-                                container
-                                direction="row"
-                                justifyContent="flex-start"
-                                alignItems="flex-start"
-                                xs={12}>
-                                <Paper elevation={1}>
-                                    <div>Height: { height }</div>
-                                    <div>Weight { weight }</div>
+                        <Card elevation={1} style={profileStyles} >
+                        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                            <Grid item xs={6}>
+                                <CardContent>
+                                    <Typography className={styles.profileHeader}>Height:</Typography>
+                                    <Typography variant='h6'>{ feet }' { inches }"</Typography>
+                                    <Typography className={styles.profileHeader}>Weight:</Typography>
+                                    <Typography variant='h6'>{ (parseInt(weight) / HECTOGRAM).toFixed(1) } lbs</Typography>
 
-                                    <div>Abilities: {abilities.map((item)=>{
-                                        return (
-                                            <>
-                                                {item.ability.name}
-                                            </>)
-                                    }) } </div>
-                                    <div>Egg Groups: {egg_groups.map((item)=>{
-                                        return (
-                                            <>
-                                                {item.name}
-                                            </>)
-                                    }) } </div>
-                                    { habitat && <div>Habitat {habitat.name} </div> }
-                                    <div>Growth Rate {growth_rate.name} </div>
-                                    <div>Gender Ratio {gender_rate} </div>
-                                    <div>Capture Rate { Math.round(((parseInt(capture_rate)/255) * 100)) } % </div>
-
-                                </Paper>
+                                </CardContent>
                             </Grid>
+                            <Grid item xs={6}>
+                                <CardContent>
+                                    <Typography className={styles.profileHeader}>Growth Rate</Typography>
+                                    <Typography variant='h6'>{growth_rate.name} </Typography>
+                                    <Typography className={styles.profileHeader}>Gender Ratio</Typography>
+                                    <Typography variant='h6'>{gender_rate} </Typography>
+                                </CardContent>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <CardContent>
+                                    { habitat && (
+                                        <>
+                                            <Typography className={styles.profileHeader}>Habitat</Typography>
+                                            <Typography variant='h6'>{habitat.name} </Typography>
+                                        </>
+                                        )
+                                    }
+                                    <Typography className={styles.profileHeader}>Capture Rate</Typography>
+                                    <Typography variant='h6'>{ Math.round(((parseInt(capture_rate)/255) * 100)) } % </Typography>
+                                </CardContent>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <CardContent>
+                                    <Typography className={styles.profileHeader}>Abilities: </Typography>
+
+                                    {abilities.map((item)=>{
+                                        return (
+                                            <>
+                                                <Chip className={styles.tag} label={item.ability.name}/>
+                                            </>)
+                                    }) }
+                                    <Typography className={styles.profileHeader}>Egg Groups:</Typography>
+
+                                    {egg_groups.map((item)=>{
+                                        return (
+                                            <>
+                                                <Chip className={styles.tag} label={item.name}/>
+                                            </>)
+                                    }) }
+                                </CardContent>
+                            </Grid>
+                        </Grid>
+                        </Card>
                             <Grid
                                 container
                                 direction="row"
@@ -372,13 +409,12 @@ const Pokemon: React.FC = ()=> {
                                 alignItems="flex-start"
                                 xs={12}>
                                 <Paper className={styles.statsSection} elevation={1}>
-                                    STATS Base Stats where 150 generally the max STATS Base Stats where 150 generally the max
+                                    <Typography> STATS Base Stats where 150 generally the max STATS Base Stats where 150 generally the max </Typography>
 
                                     { buildStatsSection(stats) }
 
                                 </Paper>
                             </Grid>
-                        </Paper>
                     </Grid>
                     <Grid item
                           direction="row"
