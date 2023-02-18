@@ -8,6 +8,7 @@ import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp
 import axios from 'axios';
 import Avatar from '../Avatar/Avatar'
 import Bio from '../Bio/Bio'
+import EvolutionChain from "../EvolutionChain/EvolutionChain";
 import Header from '../Header/Header';
 import Moves from '../Moves/Moves'
 import PokemonCard from "../PokemonCard/PokemonCard";
@@ -196,7 +197,6 @@ const Pokemon: React.FC = ()=> {
     // build details jsx
     const buildDetails = () => {
 
-        const displayEvolution = [...evolutionChain].reverse();
         return (
             <>
                 <Grid container spacing={2}>
@@ -208,21 +208,7 @@ const Pokemon: React.FC = ()=> {
                           md={2}
                           className={styles.evolutionContainer}
                     >
-                        <Typography variant='h5' className={styles.evolutionHeader}>Evolution Chain</Typography>
-                        <Paper className={styles.paper} elevation={0}>
-                            {displayEvolution.map((pokemon)=>{
-                                return (
-                                    <React.Fragment key={pokemon.id}>
-                                        <div className={styles.paper}>
-                                            <PokemonCard pokemonId={pokemon.id}/>
-                                        </div>
-                                        <div className={styles.arrow}>
-                                            <KeyboardDoubleArrowUpIcon className={styles.arrowSize}/>
-                                        </div>
-                                    </React.Fragment>
-                                )
-                            }) }
-                        </Paper>
+                        <EvolutionChain evolutionChain={evolutionChain}/>
                     </Grid>
                     <Grid item
                           justifyContent="center"
