@@ -83,7 +83,7 @@ Launches the test runner in the interactive watch mode.
 * Im using svgs on the index page to render the cards. While this is fast there is still a little but of rendering wait time and flashing on the screen.
 * On first load these cards also take a bit of time to show.
 * In future fixes I would implement lazy loading or add some UI feedback like a progress icon to help with the UI experience.
-* To get the evolution chain data I created a recursive function. I know this can be a concern if the chain hapens to go many leves deep. As far as I can tell it seems like it was maxing out around 3 so I stuck to this cleaner solution for now. I could revisit this in future and find a safer way.
+* To get the evolution chain data I created a recursive function. I know this can be a concern if the chain happens to go many leves deep. As far as I can tell it seems like it was maxing out around 3 so I stuck to this cleaner solution for now. I could revisit this in future and find a safer way.
 
 ### Future Considerations and Feature Additions
 
