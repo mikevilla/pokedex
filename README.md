@@ -39,7 +39,7 @@
 * You can resize the window and it will be responsive and usable on tablet and phone.
 
 
-### Tech stack & Open-source libraries
+### Tech stack & Open-source libraries (Latest versions of each)
 * React 18.2.0
 * React-dom 18.2.0,
 * React-redux 8.0.5
@@ -62,11 +62,19 @@
 
 In the project directory, you can run:
 
+### `npm install`
+
+To install all of the required packages
+
+and then
+
 ### `npm start`
 
-Runs the Pokedex app in the development mode.\
+Which will run the Pokedex app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+
+You can also run
 
 ### `npm test`
 
