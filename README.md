@@ -1,4 +1,4 @@
-# Pokédex
+# Pokédex <img src="https://user-images.githubusercontent.com/24237865/83422649-d1b1d980-a464-11ea-8c91-a24fdf89cd6b.png" align="center" width="12%"/>
 
 #### by Mike Villa
 
@@ -25,8 +25,6 @@
 ![Alt text](./public/img/183_details_page.png?raw=true)
 
 ### Open API
-
-<img src="https://user-images.githubusercontent.com/24237865/83422649-d1b1d980-a464-11ea-8c91-a24fdf89cd6b.png" align="right" width="21%"/>
 
 * This Pokedex app is using the [PokeAPI](https://pokeapi.co/) for consuming Pokemon data.<br>
 * PokeAPI provides a full RESTful API linked to an extensive database detailing everything about the Pokémon main game series.
