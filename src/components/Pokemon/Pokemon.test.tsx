@@ -4,12 +4,12 @@ import { Provider } from 'react-redux';
 import { store } from '../../app/store';
 import App from '../../App';
 
-test('renders learn react link', () => {
+test('Initial Pokemon Index Page', () => {
     const { getByText } = render(
         <Provider store={store}>
             <App />
         </Provider>
     );
 
-    expect(getByText(/POKEMON DETAILS PAGE/i)).toBeInTheDocument();
+    expect(getByText(/Search for Pokemon/i)).toBeInTheDocument();
 });
