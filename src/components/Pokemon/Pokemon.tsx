@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom'
-import styles from './Pokemon.module.css'
-import { CircularProgress, Divider, Tooltip, IconButton } from '@mui/material';
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-import InfoIcon from '@mui/icons-material/Info';
-import axios from 'axios';
-import Moves from '../Moves/Moves'
-import { Card, CardContent, Chip, LinearProgress, Grid, Paper, Typography } from '@mui/material';
 import { pokemonActions } from "../pokemonSlice";
-import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import Header from "../Header/Header";
-import {COLOR_MATCH, DECIMETER, HECTOGRAM, POKEMON_LIMIT, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { CircularProgress, Divider } from '@mui/material';
+import { Card, CardContent, Chip, Grid, Paper, Typography } from '@mui/material';
+import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import axios from 'axios';
+import Header from '../Header/Header';
+import Moves from '../Moves/Moves'
 import PokemonCard from "../PokemonCard/PokemonCard";
+import Stats from '../Stats/Stats'
+import {COLOR_MATCH, DECIMETER, HECTOGRAM, POKEMON_LIMIT, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
+import styles from './Pokemon.module.css'
 
 const Pokemon: React.FC = ()=> {
 
@@ -208,33 +208,6 @@ const Pokemon: React.FC = ()=> {
     }, [pokemonId])
 
 
-    // MIN = Minimum expected value
-    // MAX = Maximum expected value
-    // Function to normalise the values (MIN / MAX could be integrated)
-    const MIN = 0;
-    const MAX = 150;
-    const normalise = (value: number) => ((value - MIN) * 100) / (MAX - MIN);
-    const buildStatsSection = (stats: any[]) => {
-
-        return (
-            stats.map((item)=> {
-                return (
-                    <>
-                        <Typography className={styles.statsItems}>{item.stat.name} :  {item.base_stat}</Typography>
-                        <LinearProgress
-                            variant="determinate"
-                            value={normalise(item.base_stat)}
-                            sx={{
-                                height: '25px',
-                                width: '100%'
-                            }}/>
-                    </>
-                )
-            })
-        )
-
-    }
-
     const showTypes = (types: any[]) => {
         return (
             types.map((info: any )=> {
@@ -250,19 +223,12 @@ const Pokemon: React.FC = ()=> {
 
     }
 
-
-
     // build details jsx
     const buildDetails = () => {
 
         const bioSectionStyles = {
             margin: '10px',
             background: '#5395f1',
-        }
-
-        const sectionStyles = {
-            marginTop: '7px',
-            background: '#FAF7F1',
         }
 
         const convertedFeet = (parseInt(height) / DECIMETER);
@@ -284,14 +250,14 @@ const Pokemon: React.FC = ()=> {
                         <Paper className={styles.paper} elevation={0}>
                             {displayEvolution.map((pokemon)=>{
                                 return (
-                                    <>
+                                    <React.Fragment key={pokemon.id}>
                                         <div className={styles.paper}>
                                             <PokemonCard pokemonId={pokemon.id}/>
                                         </div>
                                         <div className={styles.arrow}>
                                             <KeyboardDoubleArrowUpIcon className={styles.arrowSize}/>
                                         </div>
-                                    </>
+                                    </React.Fragment>
                                 )
                             }) }
                         </Paper>
@@ -374,17 +340,17 @@ const Pokemon: React.FC = ()=> {
 
                                         {abilities.map((item)=>{
                                             return (
-                                                <>
+                                                <React.Fragment key={item.ability.name}>
                                                     <Chip className={styles.tag} label={item.ability.name}/>
-                                                </>)
+                                                </React.Fragment>)
                                         }) }
                                         <Typography className={styles.profileHeader}>Egg Groups:</Typography>
 
                                         {egg_groups.map((item)=>{
                                             return (
-                                                <>
+                                                <React.Fragment key={item.name}>
                                                     <Chip className={styles.tag} label={item.name}/>
-                                                </>)
+                                                </React.Fragment>)
                                         }) }
                                     </CardContent>
                                 </Grid>
@@ -392,19 +358,7 @@ const Pokemon: React.FC = ()=> {
                         </Card>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
-                                <Card style={sectionStyles} elevation={0}>
-                                    <Typography variant='h6'>
-                                        <span className={styles.typesHeader}>Stats
-                                            <Tooltip title="Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.">
-                                              <IconButton>
-                                                <InfoIcon />
-                                              </IconButton>
-                                            </Tooltip>
-                                        </span>
-                                        <Divider/>
-                                    </Typography>
-                                    { buildStatsSection(stats) }
-                                </Card>
+                             <Stats statsData={stats}/>
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <Moves movesData={moves}/>
@@ -418,11 +372,11 @@ const Pokemon: React.FC = ()=> {
     }
 
     return (
-        <>
+        <React.Fragment>
             <Header />
             {pokemonDetails === undefined && <CircularProgress/>}
             {pokemonDetails !== undefined && pokemonDetails && buildDetails()}
-        </>
+        </React.Fragment>
     );
 }
 
