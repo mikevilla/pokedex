@@ -1,0 +1,27 @@
+.history {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.logo {
+    display: flex;
+    height: 90%
+}
+
+.searchBox {
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.searchIcon {
+    align-self: flex-end;
+    margin-bottom: 5px;
+}
+
+.toolbar {
+    padding: 15px;
+    background-color: #e53d3d;
+}

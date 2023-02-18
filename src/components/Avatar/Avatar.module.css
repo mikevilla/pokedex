@@ -1,0 +1,47 @@
+.flavorText {
+    font-size: 20px;
+    font-family: 'MedievalSharp', cursive !important;
+    margin: 20px !important;
+}
+
+.pokemonDetails {
+    height: 300px;
+    width: auto;
+    max-width: 250px;
+}
+
+.pokemonHeader {
+    margin: 20px !important;
+}
+
+.pokemonNumber {
+    color: #616161;
+    margin-right: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.pokemonName {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.tag {
+    margin: 7px;
+    padding: 10px !important;;
+    border-radius: 5px !important;
+    text-transform: uppercase;
+}
+
+.typesHeader {
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

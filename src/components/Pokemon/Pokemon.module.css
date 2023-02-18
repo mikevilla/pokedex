@@ -3,17 +3,6 @@ a:active {
     color: lightskyblue;
 }
 
-.arrow {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.arrowSize {
-    transform: scale(1.1);
-}
-
-
 .avatarSection {
     display: flex;
     flex-direction: column;
@@ -30,11 +19,6 @@ a:active {
 
 .evolutionContainer {
     margin-top: 35px;
-}
-.flavorText {
-    font-size: 20px;
-    font-family: 'MedievalSharp', cursive !important;
-    margin: 20px !important;
 }
 
 .grid {
@@ -76,33 +60,6 @@ a:active {
     text-transform: uppercase;
 }
 
-.paper {
-    background-color: #FAF7F1 !important;
-    flex-shrink: 3; /* default 1 */
-}
-
-.pokemonNumber {
-    color: #616161;
-    margin-right: 20px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.pokemonName {
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-}
-
-.pokemonDetails {
-    height: 300px;
-    width: auto;
-    max-width: 250px;
-}
-
-.pokemonHeader {
-    margin: 20px !important;
-}
-
 .profileHeader {
     color: whitesmoke;
     font-family: "Montserrat", sans-serif;
@@ -122,24 +79,4 @@ a:active {
 
 .statsSection {
     width: 100%
-}
-
-.tag {
-    margin: 7px;
-    padding: 10px !important;;
-    border-radius: 5px !important;
-    text-transform: uppercase;
-}
-
-.typesHeader {
-    color: black;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 24px;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
 }

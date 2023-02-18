@@ -1,9 +1,9 @@
-import {IconButton, Paper, Tooltip, Typography} from "@mui/material";
-import styles from "../Pokemon/Pokemon.module.css";
 import React from "react";
+import {IconButton, Paper, Tooltip, Typography} from "@mui/material";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import InfoIcon from "@mui/icons-material/Info";
+import styles from "./EvolutionChain.module.css";
 
 type EvolutionChainType = {
     id: string | undefined;

@@ -1,0 +1,14 @@
+.profileHeader {
+    color: whitesmoke;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.tag {
+    margin: 7px;
+    padding: 10px !important;;
+    border-radius: 5px !important;
+    text-transform: uppercase;
+}

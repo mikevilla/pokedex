@@ -25,11 +25,6 @@ a:active {
     text-align: center;
 }
 
-.history {
-    font-family: 'Montserrat', sans-serif;
-    text-transform: uppercase;
-}
-
 .pokemonDetails {
     height: 300px;
     width: auto;
@@ -39,11 +34,6 @@ a:active {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.logo {
-    display: flex;
-    height: 90%
 }
 
 .blur {
@@ -58,14 +48,6 @@ a:active {
     text-decoration: none;
 }
 
-.searchBox {
-    display: flex;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
 .searchContainer {
     display: flex;
     padding-left: 20px;
@@ -74,20 +56,10 @@ a:active {
     margin-bottom: 5px;
 }
 
-.searchIcon {
-    align-self: flex-end;
-    margin-bottom: 5px;
-}
-
 .searchInput {
     width: 300px !important;
     margin: 225px;
     color: white !important;
-}
-
-.toolbar {
-    padding: 15px;
-    background-color: #e53d3d;
 }
 
 .pokemonTagContainer {

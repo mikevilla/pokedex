@@ -1,13 +1,13 @@
 import {AppBar, Avatar, AvatarGroup, Grid, Toolbar, Tooltip} from "@mui/material";
-import styles from "../Pokedex/Pokedex.module.css";
 import logo from "../../img/pokemon_logo_small.png";
 import SearchIcon from "@mui/icons-material/Search";
 import {Typography } from '@mui/material';
 import Search from "../Search/Search";
 import { NavLink, useNavigate} from "react-router-dom";
-import React, {useState} from "react";
+import React from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {pokemonActions} from "../pokemonSlice";
+import styles from "../Header/Header.module.css";
 
 const Header: React.FC = (props) => {
 
@@ -51,7 +51,8 @@ const Header: React.FC = (props) => {
                         </Grid>
                         <Grid item xs={6}>
                             { optionsData !== null ? (
-                                <div className={styles.searchBox}>                                                <SearchIcon className={styles.searchIcon} />
+                                <div className={styles.searchBox}>
+                                    <SearchIcon className={styles.searchIcon} />
                                     <Search options={optionsData} onChange={handleOnChange} label='Search for Pokemon' />
                                 </div>
                             ) : null
@@ -76,8 +77,6 @@ const Header: React.FC = (props) => {
             </AppBar>
         </>
     )
-
-
 }
 
 export default Header
