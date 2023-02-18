@@ -11,6 +11,11 @@
 * Able to see details about abilities, moves, species, sprites and types upon searching.
 * Able to see other evolutions of Pokemon and be able to navigate to specific Pokemon in the evolution chain.
 
+
+### Design Notes
+
+* I choose to have components take advantage of using Redux and make state be available directly in the components without 'prop drilling' in case there's a chance later that common data like 'moves' or evolution chain is changed for some reason then the other parts of the page wouldn't have to all re-render. We could easily changed this back to traditional parent child props communication to make more of generic reusable components if need be.
+
 ### Technical Notes
 * This app was built using the latest React Framework currently 18.2.0
 * Store is handled with the latest React-Redux and Redux Toolkit 
@@ -38,6 +43,11 @@ Launches the test runner in the interactive watch mode.\
 
 
 * * *
+
+### Assumptions
+
+* Im assuming that when a user visits a pokemon page that we will count that as a pokemon that the user had interest in and therefore we add it to the history of pokemon's visited and there for searched for. So when a user clicks on a card and it goes to the details page then that pokemon will be included in the history data.
+
 
 ### Future Considerations and Feature Additions
 

@@ -5,13 +5,13 @@ import { CircularProgress, Divider, Tooltip, IconButton } from '@mui/material';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import InfoIcon from '@mui/icons-material/Info';
 import axios from 'axios';
+import Moves from '../Moves/Moves'
 import { Card, CardContent, Chip, LinearProgress, Grid, Paper, Typography } from '@mui/material';
 import { pokemonActions } from "../pokemonSlice";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import Header from "../Header/Header";
-import {COLOR_MATCH, DECIMETER, HECTOGRAM} from "../../constants/pokemon";
+import {COLOR_MATCH, DECIMETER, HECTOGRAM, POKEMON_LIMIT, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
 import PokemonCard from "../PokemonCard/PokemonCard";
-import { POKEMON_LIMIT } from '../../constants/pokemon'
 
 const Pokemon: React.FC = ()=> {
 
@@ -19,7 +19,7 @@ const Pokemon: React.FC = ()=> {
 
         let url:string = "";
 
-        if (parseInt(inputId!) <= 649) {
+        if (parseInt(inputId!) <= IMAGE_SVG_LIMIT) {
             url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${inputId}.svg`
         } else if (inputId) {
             url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
@@ -39,7 +39,7 @@ const Pokemon: React.FC = ()=> {
     if (parseInt(pokemonId!) > POKEMON_LIMIT) {
         navigate(`/`)
 
-        // for set id to 1 and redirect to inde page to least prevent going out of the range of supported pokemon
+        // for set id to 1 and redirect to index page to least prevent going out of the range of supported pokemon
         pokemonId = '1'
     }
 
@@ -142,26 +142,6 @@ const Pokemon: React.FC = ()=> {
         return evolutionList;
     }
 
-    const showMoves = ((moves: any[])=> {
-
-        moves.sort((a,b) => {
-            const nameA = a.move.name;
-            const nameB = b.move.name;
-            return nameA <= nameB ? -1 : 1
-        })
-
-        return (
-            <div className={styles.movesSection}>
-                <div className={styles.movesListContainer}>
-                    {moves.map((item) => (
-                        <div className={styles.movesListItem} key={item.move.name}>
-                            {item.move.name}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        )
-    })
 
     // API call to get the Pokemon Details
     useEffect(()=> {
@@ -288,7 +268,6 @@ const Pokemon: React.FC = ()=> {
         const convertedFeet = (parseInt(height) / DECIMETER);
         const feet = Math.floor(convertedFeet);
         const inches = Math.round((convertedFeet - feet) * 12);
-
         const displayEvolution = [...evolutionChain].reverse();
         return (
             <>
@@ -428,19 +407,7 @@ const Pokemon: React.FC = ()=> {
                                 </Card>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <Card style={sectionStyles} elevation={0}>
-                                    <Typography variant='h6'>
-                                        <span className={styles.typesHeader}>Moves
-                                            <Tooltip title="Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.">
-                                              <IconButton>
-                                                <InfoIcon />
-                                              </IconButton>
-                                            </Tooltip>
-                                        </span>
-                                        <Divider/>
-                                    </Typography>
-                                    { showMoves(moves) }
-                                </Card>
+                                <Moves movesData={moves}/>
                             </Grid>
                         </Grid>
                     </Grid>
