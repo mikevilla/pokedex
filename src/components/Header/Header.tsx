@@ -62,11 +62,11 @@ const Header: React.FC = (props) => {
                             <AvatarGroup max={10}>
                                 {history.map((pokemon)=>{
                                     return (
-                                        <Tooltip title={pokemon.name} arrow>
-                                            <NavLink to={`/pokemon/${pokemon.id}`}>
-                                                <Avatar alt={`${pokemon.name}`} src={pokemon.sprite} />
-                                            </NavLink>
-                                        </Tooltip>
+                                            <Tooltip  key={pokemon.name} title={pokemon.name} arrow>
+                                                <NavLink to={`/pokemon/${pokemon.id}`}>
+                                                    <Avatar alt={`${pokemon.name}`} src={pokemon.sprite} />
+                                                </NavLink>
+                                            </Tooltip>
                                     )
                                 })}
                             </AvatarGroup>
