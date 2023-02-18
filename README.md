@@ -34,6 +34,9 @@
 * Store is handled with the latest React-Redux and Redux Toolkit
 * Built with TypeScript
 * Styling the UI was built using some of the available components in the MUI V5 framework
+* This app also has a responsive layout I took advantage of MUI grid, paper, cards, icons, appbar, toolbar to to quickly build the web app  and also have a consistent theme.
+* You can resize the window and it will be responsive and usable on tablet and phone.
+
 
 ### Tech stack & Open-source libraries
 * React 18.2.0
