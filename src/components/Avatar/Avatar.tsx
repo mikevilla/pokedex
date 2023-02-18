@@ -58,8 +58,7 @@ const Avatar: React.FC<{
                 <Grid container
                       direction="column"
                       justifyContent="center"
-                      alignItems="center"
-                      xs={12}>
+                      alignItems="center">
                     <Paper elevation={0}>
                         <Typography variant='h4' className={styles.pokemonHeader}>
                             <span className={styles.pokemonNumber}>#{id}</span>
@@ -80,8 +79,7 @@ const Avatar: React.FC<{
                 <Grid container
                       direction="column"
                       justifyContent="center"
-                      alignItems="center"
-                      xs={12}>
+                      alignItems="center">
                     { flavor_text_entries.length > 0 && <Typography align='center' className={styles.flavorText} >"{flavor_text_entries[0].flavor_text}"</Typography> }
                 </Grid>
             </Paper>
