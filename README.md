@@ -9,6 +9,7 @@
 * The user is able to search for any Pokemon through the search bar or scanning on the index page.
 * Selecting a Pokemon Card will take you to the Pokemon's detailed page. Here you will be able to see detailed information on the Pokemon such as height, weight, growth-rate, gender ratio, habitat, capture rate, abilities, egg groups.
 * There is also a stats section with hp, attack, defense, special attack, special defense and speed. 
+* There is a moves section that shows all of the moves for that pokemon, the user can scroll inside of this box to see all of them.
 * An evolution chain is located on the left hand side to see the progression of a certain species. Here you will able to navigate to specific Pokemon in the evolution chain.
 * Able to see a history of what has been searched and revisit at anytime via the recently searched list in the search bar and also a list of pokemon avatars on the top right that are shown once they have been visited.
 * The search bar has a sorted list of all of the pokemon. At the moment we will support first 807 pokemon since we do not have image information in the api for past 807.
@@ -82,21 +83,12 @@ Launches the test runner in the interactive watch mode.
 ### Future Considerations and Feature Additions
 
 * Implement Concurrency: To handle multiple requests simultaneously, you can use concurrency techniques like Goroutines (Go) or Threads (Python). This will allow you to provide a fast response time to clients even when the database is being accessed by multiple clients at the same time.
-
 * Cache frequently requested data: To reduce the load on the database and improve performance, you can cache frequently requested data in memory. You can use a caching library like Redis for this.
-
-* Testing: I would test the Pokédex thoroughly to ensure that it works as expected and can handle a high volume of requests. 
-
+* Testing: I would test the Pokédex thoroughly to ensure that it works as expected and can handle a high volume of requests.
 * Option to search pokemon by name or ID
-
 * Filter pokemons by type
-
 * Pagination
-
 * Lazy Loading
-
 * Filtering
-
 * Responsiveness and Test thoroughly on mobile devices
-
 * API data validation
