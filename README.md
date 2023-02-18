@@ -11,14 +11,14 @@
 * There is also a stats section with hp, attack, defense, special attack, special defense and speed. 
 * There is a moves section that shows all of the moves for that pokemon, the user can scroll inside of this box to see all of them.
 * An evolution chain is located on the left hand side to see the progression of a certain species. Here you will able to navigate to specific Pokemon in the evolution chain.
-* Able to see a history of what has been searched and revisit at anytime via the recently searched list in the search bar and also a list of pokemon avatars on the top right that are shown once they have been visited.
+* You'll be able to see a history of what has been searched for and revisit a pokemon page at anytime via the recently searched list in the search bar and also a list of pokemon avatars on the top right.
 * The search bar has a sorted list of all of the pokemon. At the moment we will support first 807 pokemon since we do not have image information in the api for past 807.
 * When you start typing in the search bar the will automatically start filtering the cards underneath. It will also start filtering the dropdown list options.
 * Once you select a pokemon it will take  you to that pokemon's details page.
 * Note that you will start seeing the list of pokemon that you searched for both in the drop down list and on the top right.
 * The dropdown list has a "Recently Searched" divider to separate it from the sorted list group by letter. 
 * The top right "Recently Searched" list is in the form of circular avatars. This is maxed at 10. One you reach 10 then there will be a number indicator that shows how many others you searched for.
-* On the evolution page you can click on a card in the chain and it will take you to the Pokemon's page.
+* On the details page in the evolution list you can click on a pokemon card that is in the chain and it will take you to the Pokemon's page.
 
 ![Alt text](./public/img/pokemon_index_page.png?raw=true)
 
@@ -32,9 +32,9 @@
 
 ### Implementation
 * This app was built using the latest React Framework currently 18.2.0
-* Store is handled with the latest React-Redux and Redux Toolkit
+* State is handled with the latest React-Redux and Redux Toolkit
 * Built with TypeScript
-* Styling the UI was built using some of the available components in the MUI V5 framework
+* Styling the UI was built using some of the available components in the MUI V5 framework.
 * This app also has a responsive layout I took advantage of MUI grid, paper, cards, icons, appbar, toolbar to to quickly build the web app  and also have a consistent theme.
 * You can resize the window and it will be responsive and usable on tablet and phone.
 
@@ -53,7 +53,7 @@
 * The Pokemon Details page components get their data via props from their parent Pokemon container. We could possibly make use of redux to handle the data storage for an individual pokemon but I chose not to here because 2 different pokemon would not be sharing the same individual info.
 
 ### Testing
-* More tests will be on the way
+* More tests will be on the way.
 * JavaScript Testing Framework is handled with Jest unit tests files located in each component folder file for example Pokemon.test.tsx
 
 * * *
@@ -96,3 +96,4 @@ Launches the test runner in the interactive watch mode.
 * Filtering
 * Responsiveness and Test thoroughly on mobile devices
 * API data validation
+* Add even more information to a pokemon as there is a lot of info provided but the API
