@@ -3,7 +3,15 @@ import {Card, Divider, IconButton, Tooltip, Typography} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import styles from "../Pokemon/Pokemon.module.css";
 
-const Moves: React.FC<{movesData: {move: object, version_group_details: any[]}[] }>= (props) => {
+type MoveType = {
+    move: {
+        name: string
+        url:  string
+    },
+    version_group_details: any[]
+}
+
+const Moves: React.FC<{movesData: MoveType[]}> = (props) => {
 
     const moves = props.movesData;
 
@@ -49,7 +57,6 @@ const Moves: React.FC<{movesData: {move: object, version_group_details: any[]}[]
                 { showMoves(moves) }
             </Card>
         </>
-
     )
 }
 
