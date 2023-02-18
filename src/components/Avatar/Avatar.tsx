@@ -1,6 +1,6 @@
 import React from "react";
 import {Chip, Divider, Grid, Paper, Typography} from "@mui/material";
-import styles from "../Pokemon/Pokemon.module.css";
+import styles from "./Avatar.module.css";
 import {COLOR_MATCH, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
 
 type FlavorText = {

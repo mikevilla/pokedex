@@ -1,7 +1,7 @@
-import {Card, CardContent, Chip, Grid, Typography} from "@mui/material";
-import styles from "../Pokemon/Pokemon.module.css";
-import {DECIMETER, HECTOGRAM} from "../../constants/pokemon";
 import React from "react";
+import {Card, CardContent, Chip, Grid, Typography} from "@mui/material";
+import {DECIMETER, HECTOGRAM} from "../../constants/pokemon";
+import styles from "./Bio.module.css";
 
 
 type AbilityType ={
