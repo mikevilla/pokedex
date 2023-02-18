@@ -6,11 +6,12 @@ import { CircularProgress, Divider } from '@mui/material';
 import { Card, CardContent, Chip, Grid, Paper, Typography } from '@mui/material';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import axios from 'axios';
+import Bio from '../Bio/Bio'
 import Header from '../Header/Header';
 import Moves from '../Moves/Moves'
 import PokemonCard from "../PokemonCard/PokemonCard";
 import Stats from '../Stats/Stats'
-import {COLOR_MATCH, DECIMETER, HECTOGRAM, POKEMON_LIMIT, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
+import {COLOR_MATCH, POKEMON_LIMIT, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
 import styles from './Pokemon.module.css'
 
 const Pokemon: React.FC = ()=> {
@@ -226,14 +227,6 @@ const Pokemon: React.FC = ()=> {
     // build details jsx
     const buildDetails = () => {
 
-        const bioSectionStyles = {
-            margin: '10px',
-            background: '#5395f1',
-        }
-
-        const convertedFeet = (parseInt(height) / DECIMETER);
-        const feet = Math.floor(convertedFeet);
-        const inches = Math.round((convertedFeet - feet) * 12);
         const displayEvolution = [...evolutionChain].reverse();
         return (
             <>
@@ -302,60 +295,16 @@ const Pokemon: React.FC = ()=> {
                     <Grid item
                         xs={12}
                         md={6}>
-                        <Card elevation={8} style={bioSectionStyles} >
-                            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                                <Grid item xs={6}>
-                                    <CardContent>
-                                        <Typography className={styles.profileHeader}>Height:</Typography>
-                                        <Typography variant='h6'>{ feet }' { inches }"</Typography>
-                                        <Typography className={styles.profileHeader}>Weight:</Typography>
-                                        <Typography variant='h6'>{ (parseInt(weight) / HECTOGRAM).toFixed(1) } lbs</Typography>
-
-                                    </CardContent>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CardContent>
-                                        <Typography className={styles.profileHeader}>Growth Rate</Typography>
-                                        <Typography variant='h6'>{growth_rate.name} </Typography>
-                                        <Typography className={styles.profileHeader}>Gender Ratio</Typography>
-                                        <Typography variant='h6'>{gender_rate} </Typography>
-                                    </CardContent>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CardContent>
-                                        { habitat && (
-                                            <>
-                                                <Typography className={styles.profileHeader}>Habitat</Typography>
-                                                <Typography variant='h6'>{habitat.name} </Typography>
-                                            </>
-                                            )
-                                        }
-                                        <Typography className={styles.profileHeader}>Capture Rate</Typography>
-                                        <Typography variant='h6'>{ Math.round(((parseInt(capture_rate)/255) * 100)) } % </Typography>
-                                    </CardContent>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <CardContent>
-                                        <Typography className={styles.profileHeader}>Abilities: </Typography>
-
-                                        {abilities.map((item)=>{
-                                            return (
-                                                <React.Fragment key={item.ability.name}>
-                                                    <Chip className={styles.tag} label={item.ability.name}/>
-                                                </React.Fragment>)
-                                        }) }
-                                        <Typography className={styles.profileHeader}>Egg Groups:</Typography>
-
-                                        {egg_groups.map((item)=>{
-                                            return (
-                                                <React.Fragment key={item.name}>
-                                                    <Chip className={styles.tag} label={item.name}/>
-                                                </React.Fragment>)
-                                        }) }
-                                    </CardContent>
-                                </Grid>
-                            </Grid>
-                        </Card>
+                        <Bio
+                            abilities={abilities}
+                            capture_rate={capture_rate}
+                            egg_groups={egg_groups}
+                            gender_rate={gender_rate}
+                            height={height}
+                            weight={weight}
+                            habitat={habitat}
+                            growth_rate={growth_rate}
+                        />
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
                              <Stats statsData={stats}/>
