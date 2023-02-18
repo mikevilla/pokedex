@@ -20,6 +20,9 @@
 * The top right "Recently Searched" list is in the form of circular avatars. This is maxed at 10. One you reach 10 then there will be a number indicator that shows how many others you searched for.
 * On the evolution page you can click on a card in the chain and it will take you to the Pokemon's page.
 
+![Alt text](./public/img/pokemon_index_page.png?raw=true)
+
+![Alt text](./public/img/183_details_page.png?raw=true)
 
 ### Open API
 
