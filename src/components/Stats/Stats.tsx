@@ -1,7 +1,7 @@
-import {Card, Divider, IconButton, LinearProgress, Tooltip, Typography} from "@mui/material";
-import styles from "../Pokemon/Pokemon.module.css";
-import InfoIcon from "@mui/icons-material/Info";
 import React from "react";
+import {Card, Divider, IconButton, LinearProgress, Tooltip, Typography} from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
+import styles from "./Stats.module.css";
 
 type StatType = {
     base_stat: number,

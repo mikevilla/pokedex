@@ -39,25 +39,10 @@ a:active {
     text-align: center;
 }
 
-.movesSection {
-    margin-top: 10px;
-}
-
-.movesListContainer {
-    align-items: center;
-    max-height: 383px;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-}
-
-.movesListItem {
-    color: black;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    margin-top: 15px !important;
-    text-transform: uppercase;
+.mainContainer {
+    padding-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .profileHeader {
@@ -66,17 +51,4 @@ a:active {
     font-weight: 500;
     font-size: 14px;
     text-transform: uppercase;
-}
-
-.statsItems {
-    color: black;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    margin-top: 16px !important; /* MUI seems to always be overriding classes need in investigate */
-    text-transform: uppercase;
-}
-
-.statsSection {
-    width: 100%
 }
