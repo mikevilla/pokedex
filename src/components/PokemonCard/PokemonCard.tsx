@@ -8,9 +8,7 @@ import styles from "./PokemonCard.module.css";
 const PokemonCard = (props: any) => {
 
     const pokemonData = useAppSelector(state => state.pokemon.pokemonData);
-    console.log('props ', props);
     const { pokemonId } = props;
-    console.log('pokemonId ', pokemonId )
     const {id, name, sprite } = pokemonData[pokemonId];
 
     // https://mui.com/material-ui/customization/how-to-customize/

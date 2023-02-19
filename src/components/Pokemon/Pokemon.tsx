@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom'
 import { pokemonActions } from "../pokemonSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { CircularProgress } from '@mui/material';
 import { Grid } from '@mui/material';
 import axios from 'axios';
 import Avatar from '../Avatar/Avatar'
 import Bio from '../Bio/Bio'
 import EvolutionChain from "../EvolutionChain/EvolutionChain";
 import Header from '../Header/Header';
+import LoadingMessage from "../LoadingMessage/LoadingMessage";
 import Moves from '../Moves/Moves'
 import Stats from '../Stats/Stats'
 import {POKEMON_LIMIT} from "../../constants/pokemon";
@@ -253,8 +253,7 @@ const Pokemon: React.FC = ()=> {
     return (
         <React.Fragment>
             <Header />
-            {pokemonDetails === undefined && <CircularProgress/>}
-            {pokemonDetails !== undefined && pokemonDetails && buildDetails()}
+            {(pokemonDetails.id === '' || evolutionChain.length === 0) ? <LoadingMessage /> : buildDetails()}
         </React.Fragment>
     );
 }
