@@ -100,10 +100,10 @@ Launches the test runner in the interactive watch mode.
 * Cache frequently requested data: To reduce the load on the database and improve performance, you can cache frequently requested data in memory. You can use a caching library like Redis for this.
 * Testing: I would test the Pokédex thoroughly to ensure that it works as expected and can handle a high volume of requests.
 * The details page currently needs to make 3 calls to get the necessary data. The main pokemon endpoint, the species and the evolution chain. I could look into stashing the data into redux in some usable form so that way when you revisit the page you would not have to make the same 3 calls. I could also see if these data could be reused by another pokemon page that needs the same data such as the evolution chain (as they share the same endpoint) this is so we could improve performance and minimize the number of network calls.
+* Implement Code-Splitting and Lazy Loading
 * Option to search pokemon by name or ID
 * Filter pokemons by type
 * Pagination
-* Lazy Loading
 * Filtering
 * Responsiveness and Test thoroughly on mobile devices
 * API data validation
