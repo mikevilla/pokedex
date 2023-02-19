@@ -1,5 +1,5 @@
 import React from "react";
-import {IconButton, Paper, Tooltip, Typography} from "@mui/material";
+import {Divider, IconButton, Paper, Tooltip, Typography} from "@mui/material";
 import PokemonCard from "../PokemonCard/PokemonCard";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import InfoIcon from "@mui/icons-material/Info";
@@ -17,7 +17,7 @@ const EvolutionChain: React.FC<{evolutionChain: EvolutionChainType[]}> =(props)=
 
     return (
         <>
-            <Typography variant='h5' className={styles.evolutionHeader}>Evolution Chain
+            <Typography variant='h6' className={styles.evolutionHeader}>Evolution Chain
                 <Tooltip title="Evolution is a key part of the Pokémon games. Evolving Pokémon makes them stronger and often gives them a wider movepool. Several species of Pokémon are only obtainable through evolution.">
                     <IconButton>
                         <InfoIcon />
@@ -38,6 +38,7 @@ const EvolutionChain: React.FC<{evolutionChain: EvolutionChainType[]}> =(props)=
                     )
                 }) }
             </Paper>
+            <Divider sx={{ borderBottomWidth: 10 }} />
         </>
     )
 }

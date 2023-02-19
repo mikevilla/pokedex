@@ -1,16 +1,22 @@
 import React from 'react';
 import {CardContent, CardMedia, Grid, Paper} from "@mui/material";
 import {NavLink} from "react-router-dom";
-import styles from "../Pokedex/Pokedex.module.css";
 import {useAppSelector} from "../../app/hooks";
+import styles from "./PokemonCard.module.css";
 
 
 const PokemonCard = (props: any) => {
 
     const pokemonData = useAppSelector(state => state.pokemon.pokemonData);
+    console.log('props ', props);
     const { pokemonId } = props;
+    console.log('pokemonId ', pokemonId )
     const {id, name, sprite } = pokemonData[pokemonId];
 
+    // https://mui.com/material-ui/customization/how-to-customize/
+    // "The sx prop is the best option for adding style overrides to a single instance of a component"
+    // Here we need to have access to the unique sprite value and add it to the background image so Im
+    // implementing styles to the paper component this way
     const backgroundStyle = {
             backgroundImage: `url(${sprite})`,
             backgroundPosition: `center`,
@@ -28,30 +34,28 @@ const PokemonCard = (props: any) => {
             },
         }
 
-        return (
-            <React.Fragment key={pokemonId}>
-                <NavLink className={styles.navLink} to={`/pokemon/${pokemonId}`}>
-                    <Paper elevation={12} sx={backgroundStyle}>
-                        <div className={styles.blur}>
-                            <CardMedia
-                                className={styles.cardMedia}
-                                image={sprite}
-                                sx={{ backgroundSize: "contain" }}
-                            >
-                            </CardMedia>
-                            <CardContent className={styles.cardContent}>
-                                <div className={styles.pokemonTagContainer}>
-                                    <div className={styles.pokemonId}>#{id}</div>
-                                    <div className={styles.pokemonName}>{name.toUpperCase()}</div>
-                                </div>
-                            </CardContent>
-                        </div>
-                    </Paper>
-                </NavLink>
-            </React.Fragment >
-        )
-
+    return (
+        <React.Fragment key={pokemonId}>
+            <NavLink className={styles.navLink} to={`/pokemon/${pokemonId}`}>
+                <Paper elevation={12} sx={backgroundStyle}>
+                    <div className={styles.blur}>
+                        <CardMedia
+                            className={styles.cardMedia}
+                            image={sprite}
+                            sx={{ backgroundSize: "contain" }}
+                        >
+                        </CardMedia>
+                        <CardContent className={styles.cardContent}>
+                            <div className={styles.pokemonTagContainer}>
+                                <div className={styles.pokemonId}>#{id}</div>
+                                <div className={styles.pokemonName}>{name.toUpperCase()}</div>
+                            </div>
+                        </CardContent>
+                    </div>
+                </Paper>
+            </NavLink>
+        </React.Fragment >
+    )
 }
-
 
 export default PokemonCard;

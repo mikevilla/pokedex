@@ -1,7 +1,7 @@
 import React from "react";
 import {Card, Divider, IconButton, Tooltip, Typography} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import styles from "../Pokemon/Pokemon.module.css";
+import styles from "./Moves.module.css";
 
 type MoveType = {
     move: {

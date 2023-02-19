@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import { useAppSelector } from "../../app/hooks";
-import styles from "../Pokedex/Pokedex.module.css";
+import styles from "./Search.module.css";
 
 const Search = (props: any) => {
 

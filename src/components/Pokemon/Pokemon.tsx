@@ -2,18 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom'
 import { pokemonActions } from "../pokemonSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { CircularProgress, Divider } from '@mui/material';
-import { Card, CardContent, Chip, Grid, Paper, Typography } from '@mui/material';
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import { CircularProgress } from '@mui/material';
+import { Grid } from '@mui/material';
 import axios from 'axios';
 import Avatar from '../Avatar/Avatar'
 import Bio from '../Bio/Bio'
 import EvolutionChain from "../EvolutionChain/EvolutionChain";
 import Header from '../Header/Header';
 import Moves from '../Moves/Moves'
-import PokemonCard from "../PokemonCard/PokemonCard";
 import Stats from '../Stats/Stats'
-import {COLOR_MATCH, POKEMON_LIMIT, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
+import {POKEMON_LIMIT} from "../../constants/pokemon";
 import styles from './Pokemon.module.css'
 
 const Pokemon: React.FC = ()=> {
@@ -199,7 +197,13 @@ const Pokemon: React.FC = ()=> {
 
         return (
             <>
-                <Grid container spacing={2}>
+                <Grid
+                    container
+                    spacing={3}
+                    direction="row"
+                    justifyContent="center"
+                    className={styles.mainContainer}
+                >
                     <Grid item
                           xs={12}
                           md={2}
@@ -208,8 +212,6 @@ const Pokemon: React.FC = ()=> {
                         <EvolutionChain evolutionChain={evolutionChain}/>
                     </Grid>
                     <Grid item
-                          justifyContent="center"
-                          alignItems="center"
                           xs={12}
                           md={4}>
                         <Avatar
