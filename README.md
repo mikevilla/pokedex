@@ -56,8 +56,9 @@
 * The Pokemon Details page components get their data via props from their parent Pokemon container. We could possibly make use of redux to handle the data storage for an individual pokemon but I chose not to here because 2 different pokemon would not be sharing the same individual info.
 
 ### Testing
-* More tests will be on the way.
+* Initial baseline tests have been added to confirm that the pokemon details page sections are rendering the correct data. Tests are in the same folder as the react component and its style module.
 * JavaScript Testing Framework is handled with Jest unit tests files located in each component folder file for example Pokemon.test.tsx
+* Future versions of this app will have more tests written for search, routing, recently history etc.
 
 * * *
 
