@@ -9,7 +9,6 @@ import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {pokemonActions} from "../pokemonSlice";
 import styles from "../Header/Header.module.css";
 import LoadingMessage from "../LoadingMessage/LoadingMessage";
-import axios from "axios";
 
 const Header: React.FC = (props) => {
 
