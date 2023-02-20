@@ -4,6 +4,15 @@
     margin: 20px !important;
 }
 
+.navigateIcon  {
+    margin-top: 50px;
+    transform: scale(2.2)
+}
+
+.navigateIcon:hover  {
+    cursor: pointer;
+}
+
 .pokemonDetails {
     height: 300px;
     width: auto;
