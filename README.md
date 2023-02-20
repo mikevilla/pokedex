@@ -19,7 +19,9 @@
 * The dropdown list has a "Recently Searched" divider to separate it from the sorted list group by letter. 
 * The top right "Recently Searched" list is in the form of circular avatars. This is maxed at 10. One you reach 10 then there will be a number indicator that shows how many others you searched for. For now you can access the previous ones before the max of 10 by using the dropdown.
 * On the details page in the evolution list you can click on a pokemon card that is in the chain and it will take you to the Pokemon's page.
+* There are previous and next navigation arrows surrounding the pokemon's avatar image so you can quickly see the next pokemon in order.
 * This app supports up to pokemon #807 Zeraora.
+* Friendly reminder that for this version we will count visiting a pokemon's detailed page as a pokemon that was searched for. We can change this in the future to only count ones that was explicitly found with the dropdown.
 
 ![Alt text](./public/img/pokemon_index_page.png?raw=true)
 
