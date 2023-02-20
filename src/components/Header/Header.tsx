@@ -4,10 +4,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import {Typography } from '@mui/material';
 import Search from "../Search/Search";
 import { NavLink, useNavigate} from "react-router-dom";
-import React from "react";
+import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {pokemonActions} from "../pokemonSlice";
 import styles from "../Header/Header.module.css";
+import LoadingMessage from "../LoadingMessage/LoadingMessage";
+import axios from "axios";
 
 const Header: React.FC = (props) => {
 
@@ -16,6 +18,7 @@ const Header: React.FC = (props) => {
     const optionsData = useAppSelector(state => state.pokemon.optionsData);
     const history = useAppSelector(state => state.pokemon.historyData)
     const dispatch = useAppDispatch();
+    const [showloading, setShowLoading] = useState(false);
 
     const handleOnChange = (event: {
         target: { value: string }
@@ -34,6 +37,12 @@ const Header: React.FC = (props) => {
         }
 
     }
+
+    const resetFilterTerm = () => {
+        dispatch(pokemonActions.updateFilterSearch(''));
+        setShowLoading(true);
+    }
+
     return (
 
         <>
@@ -41,7 +50,7 @@ const Header: React.FC = (props) => {
                 <Toolbar className={styles.toolbar}>
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
-                            <NavLink to='/'>
+                            <NavLink to='/' onClick={resetFilterTerm}>
                                 <img
                                     className={styles.logo}
                                     src={ logo }
@@ -75,6 +84,7 @@ const Header: React.FC = (props) => {
                     </Grid>
                 </Toolbar>
             </AppBar>
+            { showloading && <LoadingMessage /> }
         </>
     )
 }
