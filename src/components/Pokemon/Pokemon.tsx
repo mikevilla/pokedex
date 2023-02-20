@@ -28,6 +28,15 @@ const Pokemon: React.FC = ()=> {
         pokemonId = '1'
     }
 
+    type AvatarType = {
+        slot: string,
+        type: {
+            name: string,
+            url: string
+        }
+    }
+
+
     type PokemonType = {
         id: string,
         abilities: any[],
@@ -36,7 +45,7 @@ const Pokemon: React.FC = ()=> {
         weight:  string;
         moves: any[];
         stats: any[];
-        types: string[];
+        types: AvatarType[];
     }
     const initData: PokemonType = {
         id: '',
