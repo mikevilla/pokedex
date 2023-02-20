@@ -4,16 +4,17 @@ import PokemonCard from "../PokemonCard/PokemonCard";
 import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import InfoIcon from "@mui/icons-material/Info";
 import styles from "./EvolutionChain.module.css";
+import {POKEMON_LIMIT} from "../../constants/pokemon";
 
 type EvolutionChainType = {
     id: string | undefined;
     name: string;
 }
 
-const EvolutionChain: React.FC<{evolutionChain: EvolutionChainType[]}> =(props)=> {
+const EvolutionChain: React.FC<{evolutionData: EvolutionChainType[]}> =(props)=> {
 
-    const { evolutionChain } = props;
-    const displayEvolution = [...evolutionChain].reverse();
+    const { evolutionData } = props;
+    const displayEvolution = [...evolutionData].reverse();
 
     return (
         <>
@@ -26,16 +27,23 @@ const EvolutionChain: React.FC<{evolutionChain: EvolutionChainType[]}> =(props)=
             </Typography>
             <Paper className={styles.paper} elevation={0}>
                 {displayEvolution.map((pokemon)=>{
-                    return (
-                        <React.Fragment key={pokemon.id}>
-                            <div className={styles.paper}>
-                                <PokemonCard pokemonId={pokemon.id}/>
-                            </div>
-                            <div className={styles.arrow}>
-                                <KeyboardDoubleArrowUpIcon className={styles.arrowSize}/>
-                            </div>
-                        </React.Fragment>
-                    )
+
+                    const { id } = pokemon;
+
+                    if (parseInt(id!) > POKEMON_LIMIT) {
+                        return null
+                    } else {
+                        return (
+                            <React.Fragment key={pokemon.id}>
+                                <div className={styles.paper}>
+                                    <PokemonCard pokemonId={pokemon.id}/>
+                                </div>
+                                <div className={styles.arrow}>
+                                    <KeyboardDoubleArrowUpIcon className={styles.arrowSize}/>
+                                </div>
+                            </React.Fragment>
+                        )
+                    }
                 }) }
             </Paper>
             <Divider sx={{ borderBottomWidth: 10 }} />

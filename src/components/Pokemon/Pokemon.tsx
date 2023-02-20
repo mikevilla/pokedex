@@ -209,7 +209,7 @@ const Pokemon: React.FC = ()=> {
                           md={2}
                           className={styles.evolutionContainer}
                     >
-                        <EvolutionChain evolutionChain={evolutionChain}/>
+                        <EvolutionChain evolutionData={evolutionChain}/>
                     </Grid>
                     <Grid item
                           xs={12}
