@@ -19,6 +19,7 @@
 * The dropdown list has a "Recently Searched" divider to separate it from the sorted list group by letter. 
 * The top right "Recently Searched" list is in the form of circular avatars. This is maxed at 10. One you reach 10 then there will be a number indicator that shows how many others you searched for.
 * On the details page in the evolution list you can click on a pokemon card that is in the chain and it will take you to the Pokemon's page.
+* This app supports up to pokemon #807 Zeraora.
 
 ![Alt text](./public/img/pokemon_index_page.png?raw=true)
 
@@ -88,11 +89,12 @@ Launches the test runner in the interactive watch mode.
 * Im assuming that when a user visits a pokemon page that we count that as a pokemon that the user had interest in searched for. So when a user clicks on a card and it goes to the details page we then add that pokemon will be included in the history data. It will show up in the recently searched for list.
 
 ### Known Issues
-* Im using svgs on the index page to render the cards. While this is fast there is still a little but of rendering wait time and flashing on the screen.
+* Im using svgs on the index page to render the cards. While this is fast there is still a little bit of rendering wait time and flashing on the screen is you scroll quickly.
 * On first load these cards also take a bit of time to show.
-* In future fixes I would implement lazy loading or add some UI feedback like a progress icon to help with the UI experience.
-* To get the evolution chain data I created a recursive function. I know this can be a concern if the chain happens to go many leves deep. As far as I can tell it seems like it was maxing out around 3 so I stuck to this cleaner solution for now. I could revisit this in future and find a safer way.
-* The details page makes 3 network calls to the pokemon API to get the necessary data to render the page. Please see the Future Consideration section below for how we could handle to optimize.
+* In future fixes I would implement lazy loading or add some UI feedback like a progress icon to help with the UI experience on the index page.
+* The image source of the svgs for each of the pokemon goes up to 649. After which I use another source to get up to 807 but the quality of the image is lower resolution. I keep 807 as the limit for the app and if someone tries to go higher I redirect to the index page.
+* To get the evolution chain data I created a recursive function. I know this can be a concern if the chain happens to go many levels deep. As far as I can tell it seems like it was maxing out around 3 so I stuck to this cleaner solution for now. I could revisit this in future and find a safer but messy iterative way.
+* The details page makes 3 network calls to the pokemon API to get the necessary data to render the page. Please see the Future Consideration section below for how we could handle to optimize by storing into redux.
 
 ### Future Considerations and Feature Additions
 

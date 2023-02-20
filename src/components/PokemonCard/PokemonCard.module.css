@@ -3,7 +3,7 @@
     backdrop-filter: blur(1px);
     height: auto;
     width: 100%;
-    content-visibility: auto;
+    /*content-visibility: auto;*/
 }
 
 .cardContent {

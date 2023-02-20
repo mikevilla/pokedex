@@ -26,7 +26,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                         return  (
                             pokemonData[pokemonId].name.includes(filterSearch) &&
                             <React.Fragment key={pokemonId}>
-                                <Grid item xs={12} sm={6} md={3} lg={2} >
+                                <Grid item xs={12} sm={6} md={3} lg={3} xl={2} >
                                      <PokemonCard pokemonId={pokemonId}/>
                                 </Grid>
                             </React.Fragment>
