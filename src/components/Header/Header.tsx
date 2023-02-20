@@ -8,7 +8,6 @@ import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {pokemonActions} from "../pokemonSlice";
 import styles from "../Header/Header.module.css";
-import LoadingMessage from "../LoadingMessage/LoadingMessage";
 
 const Header: React.FC = (props) => {
 
@@ -83,7 +82,6 @@ const Header: React.FC = (props) => {
                     </Grid>
                 </Toolbar>
             </AppBar>
-            { showloading && <LoadingMessage /> }
         </>
     )
 }
