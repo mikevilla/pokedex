@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Avatar from '../Avatar/Avatar'
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Avatar Section', () => {
 
@@ -32,13 +33,15 @@ describe('Avatar Section', () => {
         const { id, flavor_text_entries, name, pokemonId, types } = speciesData;
 
         render(
-            <Avatar
-                id={id}
-                flavor_text_entries={flavor_text_entries}
-                name={name}
-                pokemonId={pokemonId!}
-                types={types}
-            />
+            <BrowserRouter>
+                <Avatar
+                    id={id}
+                    flavor_text_entries={flavor_text_entries}
+                    name={name}
+                    pokemonId={pokemonId!}
+                    types={types}
+                />
+            </BrowserRouter>
         );
 
         const searchPokemonId = screen.getByText(/#3/i);
