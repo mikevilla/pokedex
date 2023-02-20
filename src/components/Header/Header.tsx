@@ -14,7 +14,8 @@ const Header: React.FC = (props) => {
     const navigate = useNavigate();
 
     const optionsData = useAppSelector(state => state.pokemon.optionsData);
-    const history = useAppSelector(state => state.pokemon.historyData)
+    const history = useAppSelector(state => state.pokemon.historyData);
+    const reverseHistory = [...history].reverse();
     const dispatch = useAppDispatch();
     const [showloading, setShowLoading] = useState(false);
 
@@ -66,9 +67,9 @@ const Header: React.FC = (props) => {
                             }
                         </Grid>
                         <Grid item xs={2}>
-                            { history.length > 0 && <Typography className={styles.history}>Recently Searched...</Typography> }
+                            { reverseHistory.length > 0 && <Typography className={styles.history}>Recently Searched...</Typography> }
                             <AvatarGroup max={10}>
-                                {history.map((pokemon)=>{
+                                {reverseHistory.map((pokemon)=>{
                                     return (
                                             <Tooltip  key={pokemon.name} title={pokemon.name} arrow>
                                                 <NavLink to={`/pokemon/${pokemon.id}`}>
