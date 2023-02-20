@@ -1,7 +1,10 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {Chip, Divider, Grid, Paper, Typography} from "@mui/material";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import styles from "./Avatar.module.css";
-import {COLOR_MATCH, IMAGE_SVG_LIMIT} from "../../constants/pokemon";
+import {COLOR_MATCH, IMAGE_SVG_LIMIT, POKEMON_LIMIT} from "../../constants/pokemon";
 
 type FlavorText = {
     flavor_text: string,
@@ -24,6 +27,9 @@ const Avatar: React.FC<{
     }> = (props) => {
 
     const { id, flavor_text_entries, name, pokemonId, types } = props
+    const previousId: number = parseInt(pokemonId) - 1;
+    const nextId: number = parseInt(pokemonId) + 1
+
 
     const generateMainAssetUrl = (inputId: string | undefined| null) => {
 
@@ -66,7 +72,18 @@ const Avatar: React.FC<{
                         </Typography>
                     </Paper>
                     <Paper elevation={0}>
+                        { previousId > 0 && (
+                            <NavLink to={`/pokemon/${previousId}`}>
+                                <NavigateBeforeIcon className={styles.navigateIcon }/>
+                            </NavLink>
+                        )}
                         <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+                        { nextId < POKEMON_LIMIT && (
+                            <NavLink to={`/pokemon/${nextId}`}>
+                                <NavigateNextIcon className={styles.navigateIcon} />
+                            </NavLink>
+                        )}
+
                     </Paper>
                     <Paper elevation={0}>
                         <Typography variant='h6'>
