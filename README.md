@@ -12,7 +12,7 @@
 * There is a moves section that shows all of the moves for that pokemon, the user can scroll inside of this box to see all of them.
 * An evolution chain is located on the left hand side to see the progression of a certain species. Here you will able to navigate to specific Pokemon in the evolution chain.
 * You'll be able to see a history of what has been searched for and revisit a pokemon page at anytime via the recently searched list in the search bar and also a list of pokemon avatars on the top right.
-* The search bar has a sorted list of all of the pokemon. At the moment we will support first 807 pokemon since we do not have image information in the api for past 807.
+* The search bar has a sorted list of all of the pokemon. At the moment we will support the first 807 pokemon since we do not have image information in the api for past 807.
 * When you start typing in the search bar the will automatically start filtering the cards underneath. It will also start filtering the dropdown list options.
 * Once you select a pokemon it will take  you to that pokemon's details page.
 * Note that you will start seeing the list of pokemon that you searched for both in the drop down list and on the top right.
