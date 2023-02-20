@@ -18,12 +18,20 @@ type FlavorText = {
     }
 }
 
+type AvatarType = {
+    slot: string,
+    type: {
+        name: string,
+        url: string
+    }
+}
+
 const Avatar: React.FC<{
     id: string,
     flavor_text_entries: FlavorText[],
     name: string,
     pokemonId: string,
-    types: any[]
+    types: AvatarType[]
     }> = (props) => {
 
     const { id, flavor_text_entries, name, pokemonId, types } = props
