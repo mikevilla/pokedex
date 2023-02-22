@@ -18,7 +18,7 @@ const Search = (props: any) => {
                 id="PokemonSearch"
                 disableClearable
                 autoSelect
-                options={optionsData.map((option: any) => { if (option) { return option.name} })}
+                options={optionsData.map((option: any) => { if (option) { return option.name} else return null })}
                 groupBy={(name) => {
                         let header: string = '';
                         if (historyData.find(element => element.name === name)) {

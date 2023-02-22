@@ -85,7 +85,7 @@ const Avatar: React.FC<{
                                 <NavigateBeforeIcon className={styles.navigateIcon }/>
                             </NavLink>
                         )}
-                        <img className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+                        <img alt='Pokemon' className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
                         { nextId < POKEMON_LIMIT && (
                             <NavLink to={`/pokemon/${nextId}`}>
                                 <NavigateNextIcon className={styles.navigateIcon} />

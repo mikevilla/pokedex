@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import {Typography } from '@mui/material';
 import Search from "../Search/Search";
 import { NavLink, useNavigate} from "react-router-dom";
-import React, {useState} from "react";
+import React from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {pokemonActions} from "../pokemonSlice";
 import styles from "../Header/Header.module.css";
@@ -17,7 +17,6 @@ const Header: React.FC = (props) => {
     const history = useAppSelector(state => state.pokemon.historyData);
     const reverseHistory = [...history].reverse();
     const dispatch = useAppDispatch();
-    const [showloading, setShowLoading] = useState(false);
 
     const handleOnChange = (event: {
         target: { value: string }
@@ -39,7 +38,6 @@ const Header: React.FC = (props) => {
 
     const resetFilterTerm = () => {
         dispatch(pokemonActions.updateFilterSearch(''));
-        setShowLoading(true);
     }
 
     return (

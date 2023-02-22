@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardContent, CardMedia, Grid, Paper} from "@mui/material";
+import {CardContent, CardMedia, Paper} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import {useAppSelector} from "../../app/hooks";
 import styles from "./PokemonCard.module.css";

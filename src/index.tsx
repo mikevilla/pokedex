@@ -4,9 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-// import './index.css';
-import { Router, createBrowserRouter } from 'react-router-dom';
-// import { createBrowserHistory } from 'history';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
