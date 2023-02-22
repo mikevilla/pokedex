@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Avatar from '../Avatar/Avatar'
+import Avatar from '../Avatar/Avatar';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('Avatar Section', () => {
@@ -11,7 +11,7 @@ describe('Avatar Section', () => {
             flavor_text: "The plant blooms\nwhen it is\nabsorbing solar\fenergy. It stays\non the move to\nseek sunlight.",
             language:   {name: 'en', url: 'https://pokeapi.co/api/v2/language/9/'},
             version:    {name: 'red', url: 'https://pokeapi.co/api/v2/version/1/'}
-        }]
+        }];
 
         const speciesData = {
             id: '3',
@@ -28,7 +28,7 @@ describe('Avatar Section', () => {
                     type : {name: 'poison', url: 'https://pokeapi.co/api/v2/type/4/'}
                 }
             ]
-        }
+        };
 
         const { id, flavor_text_entries, name, pokemonId, types } = speciesData;
 
@@ -57,5 +57,5 @@ describe('Avatar Section', () => {
         expect(searchFlavorText).toBeInTheDocument();
     });
 
-})
+});
 

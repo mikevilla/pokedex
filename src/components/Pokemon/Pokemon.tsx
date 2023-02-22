@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom';
 import { pokemonActions } from "../pokemonSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Grid } from '@mui/material';
 import axios from 'axios';
-import Avatar from '../Avatar/Avatar'
-import Bio from '../Bio/Bio'
+import Avatar from '../Avatar/Avatar';
+import Bio from '../Bio/Bio';
 import EvolutionChain from "../EvolutionChain/EvolutionChain";
 import Header from '../Header/Header';
 import LoadingMessage from "../LoadingMessage/LoadingMessage";
-import Moves from '../Moves/Moves'
-import Stats from '../Stats/Stats'
+import Moves from '../Moves/Moves';
+import Stats from '../Stats/Stats';
 import {POKEMON_LIMIT} from "../../constants/pokemon";
-import styles from './Pokemon.module.css'
+import styles from './Pokemon.module.css';
 
 const Pokemon: React.FC = ()=> {
     const navigate = useNavigate();
@@ -22,10 +22,10 @@ const Pokemon: React.FC = ()=> {
     let { pokemonId } = params;
 
     if (parseInt(pokemonId!) > POKEMON_LIMIT) {
-        navigate(`/`)
+        navigate(`/`);
 
         // for set id to 1 and redirect to index page to least prevent going out of the range of supported pokemon
-        pokemonId = '1'
+        pokemonId = '1';
     }
 
     type AvatarType = {
@@ -56,7 +56,7 @@ const Pokemon: React.FC = ()=> {
         moves: [],
         stats: [],
         types: [],
-    }
+    };
 
     type EvolutionChainType = {
         id: string | undefined;
@@ -95,7 +95,7 @@ const Pokemon: React.FC = ()=> {
         habitat: { name: '', url:  '' },
         growth_rate: { name: '', url:  '' },
         gender_rate: ''
-    }
+    };
 
     // Pokemon Main Details
     const [pokemonDetails, setPokemonDetails] = useState<PokemonType>(initData);
@@ -111,22 +111,22 @@ const Pokemon: React.FC = ()=> {
         name: string
     }
 
-    const evolutionList: Evolution[] = []
+    const evolutionList: Evolution[] = [];
 
     // Recursive function to drill down and build out the evolution list,
     // its a small list so decided to do this with recursion can refactor later
     const buildEvolution = (chain: any): any => {
 
 
-        const url: string = chain.species.url;
-        const regex = /\/(\d+)\/?/
+        const {url} = chain.species;
+        const regex = /\/(\d+)\/?/;
         const check = url.match(regex) as RegExpMatchArray | undefined;
-        const name: string = chain.species.name;
+        const {name} = chain.species;
 
         const pokemonEvolved: Evolution = {
             id: check![1],
             name: name,
-        }
+        };
 
         evolutionList.push(pokemonEvolved);
 
@@ -134,7 +134,7 @@ const Pokemon: React.FC = ()=> {
              buildEvolution(chain.evolves_to[0]);
         }
         return evolutionList;
-    }
+    };
 
 
     // API call to get the Pokemon Details
@@ -143,7 +143,7 @@ const Pokemon: React.FC = ()=> {
         // update history
         if (Object.keys(pokemonData).length !== 0) {
 
-            const findPokemon = pokemonData[pokemonId!]
+            const findPokemon = pokemonData[pokemonId!];
 
             type OptionType = {
                     id: number,
@@ -173,7 +173,7 @@ const Pokemon: React.FC = ()=> {
             })
             .catch((error)=>{
                 setPokemonDetails(initData);
-            })
+            });
 
         // Pokemon Species API For Evolutions Chain
         axios
@@ -191,14 +191,14 @@ const Pokemon: React.FC = ()=> {
 
                         buildEvolution(chain);
                         setEvolutionChain(evolutionList);
-                    })
+                    });
             })
             .catch((error)=>{
-                setSpeciesData(initSpeciesData)
-            })
+                setSpeciesData(initSpeciesData);
+            });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pokemonId])
+    }, [pokemonId]);
 
     // build details jsx
     const buildDetails = () => {
@@ -254,9 +254,9 @@ const Pokemon: React.FC = ()=> {
                     </Grid>
                 </Grid>
             </>
-        )
+        );
 
-    }
+    };
 
     return (
         <React.Fragment>
@@ -264,6 +264,6 @@ const Pokemon: React.FC = ()=> {
             {(pokemonDetails.id === '' || evolutionChain.length === 0) ? <LoadingMessage /> : buildDetails()}
         </React.Fragment>
     );
-}
+};
 
 export default Pokemon;

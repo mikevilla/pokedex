@@ -18,15 +18,15 @@ const Moves: React.FC<{movesData: MoveType[]}> = (props) => {
     const sectionStyles = {
         marginTop: '7px',
         background: '#FAF7F1',
-    }
+    };
 
     const showMoves = ((moves: any[])=> {
 
         moves.sort((a,b) => {
             const nameA = a.move.name;
             const nameB = b.move.name;
-            return nameA <= nameB ? -1 : 1
-        })
+            return nameA <= nameB ? -1 : 1;
+        });
 
         return (
             <div className={styles.movesSection}>
@@ -38,13 +38,13 @@ const Moves: React.FC<{movesData: MoveType[]}> = (props) => {
                     ))}
                 </div>
             </div>
-        )
-    })
+        );
+    });
 
     return (
         <>
             <Card style={sectionStyles} elevation={0}>
-                <Typography variant='h6'>
+                <Typography variant="h6">
                     <span className={styles.typesHeader}>Moves
                         <Tooltip title="Moves are the skills of Pokémon in battle. In battle, a Pokémon uses one move each turn. Some moves (including those learned by Hidden Machine) can be used outside of battle as well, usually for the purpose of removing obstacles or exploring new areas.">
                           <IconButton>
@@ -57,7 +57,7 @@ const Moves: React.FC<{movesData: MoveType[]}> = (props) => {
                 { showMoves(moves) }
             </Card>
         </>
-    )
-}
+    );
+};
 
-export default Moves
+export default Moves;

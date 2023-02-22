@@ -1,5 +1,5 @@
-export const DECIMETER = 3.048
-export const HECTOGRAM = 4.536
+export const DECIMETER = 3.048;
+export const HECTOGRAM = 4.536;
 export const POKEMON_LIMIT = 807;
 export const IMAGE_SVG_LIMIT = 649;
 
@@ -23,4 +23,4 @@ export const COLOR_MATCH: pokemonType = {
     dragon: "success",
     dark: "secondary",
     fairy: "info"
-}
+};

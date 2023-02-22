@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Bio from '../Bio/Bio'
+import Bio from '../Bio/Bio';
 
 describe('Bio Section', () => {
 
@@ -17,7 +17,7 @@ describe('Bio Section', () => {
             habitat: {name: 'grassland', url: 'https://pokeapi.co/api/v2/pokemon-habitat/3/'},
             height: '10',
             weight: '130'
-        }
+        };
 
         const { abilities, capture_rate, egg_groups, gender_rate, growth_rate, habitat, height, weight } = bioData;
 
@@ -40,5 +40,5 @@ describe('Bio Section', () => {
 
     });
 
-})
+});
 

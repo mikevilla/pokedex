@@ -18,7 +18,7 @@ const EvolutionChain: React.FC<{evolutionData: EvolutionChainType[]}> =(props)=>
 
     return (
         <>
-            <Typography variant='h6' className={styles.evolutionHeader}>Evolution Chain
+            <Typography variant="h6" className={styles.evolutionHeader}>Evolution Chain
                 <Tooltip title="Evolution is a key part of the Pokémon games. Evolving Pokémon makes them stronger and often gives them a wider movepool. Several species of Pokémon are only obtainable through evolution.">
                     <IconButton>
                         <InfoIcon />
@@ -31,7 +31,7 @@ const EvolutionChain: React.FC<{evolutionData: EvolutionChainType[]}> =(props)=>
                     const { id } = pokemon;
 
                     if (parseInt(id!) > POKEMON_LIMIT) {
-                        return null
+                        return null;
                     } else {
                         return (
                             <React.Fragment key={pokemon.id}>
@@ -42,13 +42,13 @@ const EvolutionChain: React.FC<{evolutionData: EvolutionChainType[]}> =(props)=>
                                     <KeyboardDoubleArrowUpIcon className={styles.arrowSize}/>
                                 </div>
                             </React.Fragment>
-                        )
+                        );
                     }
                 }) }
             </Paper>
             <Divider sx={{ borderBottomWidth: 10 }} />
         </>
-    )
-}
+    );
+};
 
-export default EvolutionChain
+export default EvolutionChain;

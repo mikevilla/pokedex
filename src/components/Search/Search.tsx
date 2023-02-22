@@ -8,7 +8,7 @@ const Search = (props: any) => {
 
     const optionsData = useAppSelector(state => state.pokemon.optionsData);
     const historyData = useAppSelector(state => state.pokemon.historyData);
-    const { onChange, label } = props
+    const { onChange, label } = props;
     const recentlySearched: string[] = [];
 
     return (
@@ -18,16 +18,16 @@ const Search = (props: any) => {
                 id="PokemonSearch"
                 disableClearable
                 autoSelect
-                options={optionsData.map((option: any) => { if (option) { return option.name} else return null })}
+                options={optionsData.map((option: any) => { if (option) { return option.name;} else return null; })}
                 groupBy={(name) => {
                         let header: string = '';
                         if (historyData.find(element => element.name === name)) {
                             if (!recentlySearched.includes(name)) {
                                 recentlySearched.push(name);
                             }
-                            header = 'Recently Searched'
+                            header = 'Recently Searched';
                         } else {
-                            header = name[0].toUpperCase()
+                            header = name[0].toUpperCase();
                         }
                         return header;
                     }
@@ -49,6 +49,6 @@ const Search = (props: any) => {
             />
         </>
     );
-}
+};
 
-export default Search
+export default Search;
