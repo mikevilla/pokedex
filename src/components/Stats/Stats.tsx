@@ -14,7 +14,7 @@ type StatType = {
 
 const Stats: React.FC<{statsData: StatType[]}> = (props) => {
 
-    const { statsData } = props
+    const { statsData } = props;
 
     // Normalise function used for linear progress bar to set range
     const MIN = 0;
@@ -24,7 +24,7 @@ const Stats: React.FC<{statsData: StatType[]}> = (props) => {
     const sectionStyles = {
         marginTop: '7px',
         background: '#FAF7F1',
-    }
+    };
 
     const buildStatsSection = (stats: any[]) => {
 
@@ -41,15 +41,15 @@ const Stats: React.FC<{statsData: StatType[]}> = (props) => {
                                 width: '100%'
                             }}/>
                     </React.Fragment>
-                )
+                );
             })
-        )
-    }
+        );
+    };
 
     return(
             <>
                 <Card style={sectionStyles} elevation={0}>
-                    <Typography variant='h6'>
+                    <Typography variant="h6">
                         <span className={styles.typesHeader}>Stats
                             <Tooltip title="Stats determine certain aspects of battles. Each Pokémon has a value for each stat which grows as they gain levels and can be altered momentarily by effects in battles.">
                               <IconButton>
@@ -62,7 +62,7 @@ const Stats: React.FC<{statsData: StatType[]}> = (props) => {
                     { buildStatsSection(statsData) }
                 </Card>
             </>
-        )
-}
+        );
+};
 
-export default Stats
+export default Stats;

@@ -1,6 +1,6 @@
 import React from "react";
 import {CircularProgress, Grid} from "@mui/material";
-import styles from './LoadingMessage.module.css'
+import styles from './LoadingMessage.module.css';
 
 const LoadingMessage: React.FC = () => {
 
@@ -16,7 +16,7 @@ const LoadingMessage: React.FC = () => {
         >
             <CircularProgress className={styles.loadingMessage} size={150} thickness={3}/>
         </Grid>
-    )
-}
+    );
+};
 
-export default LoadingMessage
+export default LoadingMessage;

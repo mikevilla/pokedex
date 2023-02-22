@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Moves from '../Moves/Moves'
+import Moves from '../Moves/Moves';
 import { BrowserRouter } from 'react-router-dom';
 import {Provider} from "react-redux";
 import {store} from "../../app/store";
@@ -28,5 +28,5 @@ describe('Moves Section', () => {
         expect(searchMoveOne).toBeInTheDocument();
         expect(searchMoveTwo).toBeInTheDocument();
     });
-})
+});
 

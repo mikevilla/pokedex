@@ -30,7 +30,7 @@ const PokemonCard = (props: any) => {
                 boxShadow: `0 10px 20px rgba(0,0,0,0.15)`,
                 transform: `scale(1)`,
             },
-        }
+        };
 
     return (
         <React.Fragment key={pokemonId}>
@@ -53,7 +53,7 @@ const PokemonCard = (props: any) => {
                 </Paper>
             </NavLink>
         </React.Fragment >
-    )
-}
+    );
+};
 
 export default PokemonCard;

@@ -29,14 +29,14 @@ const Bio: React.FC<{
     weight: string
 }> = (props) => {
 
-    const { abilities, capture_rate, egg_groups, gender_rate, growth_rate, habitat, height, weight } = props
+    const { abilities, capture_rate, egg_groups, gender_rate, growth_rate, habitat, height, weight } = props;
     const convertedFeet = (parseInt(height) / DECIMETER);
     const feet = Math.floor(convertedFeet);
     const inches = Math.round((convertedFeet - feet) * 12);
     const bioSectionStyles = {
         margin: '10px',
         background: '#5395f1',
-    }
+    };
 
     return (
         <>
@@ -45,18 +45,18 @@ const Bio: React.FC<{
                     <Grid item xs={6}>
                         <CardContent>
                             <Typography className={styles.profileHeader}>Height:</Typography>
-                            <Typography variant='h6'>{ feet }' { inches }"</Typography>
+                            <Typography variant="h6">{ feet }' { inches }"</Typography>
                             <Typography className={styles.profileHeader}>Weight:</Typography>
-                            <Typography variant='h6'>{ (parseInt(weight) / HECTOGRAM).toFixed(1) } lbs</Typography>
+                            <Typography variant="h6">{ (parseInt(weight) / HECTOGRAM).toFixed(1) } lbs</Typography>
 
                         </CardContent>
                     </Grid>
                     <Grid item xs={6}>
                         <CardContent>
                             <Typography className={styles.profileHeader}>Growth Rate</Typography>
-                            <Typography variant='h6'>{growth_rate.name} </Typography>
+                            <Typography variant="h6">{growth_rate.name} </Typography>
                             <Typography className={styles.profileHeader}>Gender Ratio</Typography>
-                            <Typography variant='h6'>{gender_rate} </Typography>
+                            <Typography variant="h6">{gender_rate} </Typography>
                         </CardContent>
                     </Grid>
                     <Grid item xs={6}>
@@ -64,12 +64,12 @@ const Bio: React.FC<{
                             { habitat && (
                                 <>
                                     <Typography className={styles.profileHeader}>Habitat</Typography>
-                                    <Typography variant='h6'>{habitat.name} </Typography>
+                                    <Typography variant="h6">{habitat.name} </Typography>
                                 </>
                             )
                             }
                             <Typography className={styles.profileHeader}>Capture Rate</Typography>
-                            <Typography variant='h6'>{ Math.round(((parseInt(capture_rate)/255) * 100)) } % </Typography>
+                            <Typography variant="h6">{ Math.round(((parseInt(capture_rate)/255) * 100)) } % </Typography>
                         </CardContent>
                     </Grid>
                     <Grid item xs={6}>
@@ -80,7 +80,7 @@ const Bio: React.FC<{
                                 return (
                                     <React.Fragment key={item.ability.name}>
                                         <Chip className={styles.tag} label={item.ability.name}/>
-                                    </React.Fragment>)
+                                    </React.Fragment>);
                             }) }
                             <Typography className={styles.profileHeader}>Egg Groups:</Typography>
 
@@ -88,15 +88,15 @@ const Bio: React.FC<{
                                 return (
                                     <React.Fragment key={item.name}>
                                         <Chip className={styles.tag} label={item.name}/>
-                                    </React.Fragment>)
+                                    </React.Fragment>);
                             }) }
                         </CardContent>
                     </Grid>
                 </Grid>
             </Card>
         </>
-    )
-}
+    );
+};
 
 
-export default Bio
+export default Bio;

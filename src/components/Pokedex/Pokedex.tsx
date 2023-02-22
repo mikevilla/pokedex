@@ -3,9 +3,9 @@ import {
     CircularProgress,
     Grid,
 } from '@mui/material';
-import styles from '../Pokedex/Pokedex.module.css'
-import { useAppSelector } from '../../app/hooks'
-import Header from '../Header/Header'
+import styles from '../Pokedex/Pokedex.module.css';
+import { useAppSelector } from '../../app/hooks';
+import Header from '../Header/Header';
 import PokemonCard from "../PokemonCard/PokemonCard";
 
 const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
@@ -30,7 +30,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
                                      <PokemonCard pokemonId={pokemonId}/>
                                 </Grid>
                             </React.Fragment>
-                        )
+                        );
                     })
                 }
             </Grid>
@@ -40,7 +40,7 @@ const Pokedex: React.FC<{pokemonData: any, optionsData: any}> = (props) => {
 
         </>
     );
-}
+};
 
 
 export default Pokedex;

@@ -9,7 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {pokemonActions} from "../pokemonSlice";
 import styles from "../Header/Header.module.css";
 
-const Header: React.FC = (props) => {
+const Header: React.FC = () => {
 
     const navigate = useNavigate();
 
@@ -25,29 +25,29 @@ const Header: React.FC = (props) => {
         const term = event.target.value.toLowerCase();
         dispatch(pokemonActions.updateFilterSearch(term));
 
-        const findPokemon = optionsData.find(element => element.name === term)
+        const findPokemon = optionsData.find(element => element.name === term);
 
         if (findPokemon) {
-            const pokemonSearched = {...findPokemon}
+            const pokemonSearched = {...findPokemon};
             pokemonSearched.searched = true;
             dispatch(pokemonActions.updateHistory(pokemonSearched));
-            navigate(`/pokemon/${findPokemon.id}`)
+            navigate(`/pokemon/${findPokemon.id}`);
         }
 
-    }
+    };
 
     const resetFilterTerm = () => {
         dispatch(pokemonActions.updateFilterSearch(''));
-    }
+    };
 
     return (
 
         <>
-            <AppBar position='static'>
+            <AppBar position="static">
                 <Toolbar className={styles.toolbar}>
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
-                            <NavLink to='/' onClick={resetFilterTerm}>
+                            <NavLink to="/" onClick={resetFilterTerm}>
                                 <img
                                     className={styles.logo}
                                     src={ logo }
@@ -59,7 +59,7 @@ const Header: React.FC = (props) => {
                             { optionsData !== null ? (
                                 <div className={styles.searchBox}>
                                     <SearchIcon className={styles.searchIcon} />
-                                    <Search options={optionsData} onChange={handleOnChange} label='Search for Pokemon' />
+                                    <Search options={optionsData} onChange={handleOnChange} label="Search for Pokemon" />
                                 </div>
                             ) : null
                             }
@@ -74,7 +74,7 @@ const Header: React.FC = (props) => {
                                                     <Avatar alt={`${pokemon.name}`} src={pokemon.sprite} />
                                                 </NavLink>
                                             </Tooltip>
-                                    )
+                                    );
                                 })}
                             </AvatarGroup>
                         </Grid>
@@ -82,7 +82,7 @@ const Header: React.FC = (props) => {
                 </Toolbar>
             </AppBar>
         </>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

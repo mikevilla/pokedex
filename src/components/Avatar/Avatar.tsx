@@ -34,9 +34,9 @@ const Avatar: React.FC<{
     types: AvatarType[]
     }> = (props) => {
 
-    const { id, flavor_text_entries, name, pokemonId, types } = props
+    const { id, flavor_text_entries, name, pokemonId, types } = props;
     const previousId: number = parseInt(pokemonId) - 1;
-    const nextId: number = parseInt(pokemonId) + 1
+    const nextId: number = parseInt(pokemonId) + 1;
 
 
     const generateMainAssetUrl = (inputId: string | undefined| null) => {
@@ -44,13 +44,13 @@ const Avatar: React.FC<{
         let url:string = "";
 
         if (parseInt(inputId!) <= IMAGE_SVG_LIMIT) {
-            url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${inputId}.svg`
+            url = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${inputId}.svg`;
         } else if (inputId) {
-            url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`
+            url = `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${inputId}.png`;
         }
 
         return url;
-    }
+    };
 
     const showTypes = (types: any[]) => {
         return (
@@ -61,10 +61,10 @@ const Avatar: React.FC<{
                     <React.Fragment key={name}>
                         <Chip key={name} className={styles.tag} color={COLOR_MATCH[name]} label={name}></Chip>
                     </React.Fragment>
-                )
+                );
             })
-        )
-    }
+        );
+    };
 
     return (
         <>
@@ -74,7 +74,7 @@ const Avatar: React.FC<{
                       justifyContent="center"
                       alignItems="center">
                     <Paper elevation={0}>
-                        <Typography variant='h4' className={styles.pokemonHeader}>
+                        <Typography variant="h4" className={styles.pokemonHeader}>
                             <span className={styles.pokemonNumber}>#{id}</span>
                             <span className={styles.pokemonName}>{name}</span>
                         </Typography>
@@ -85,7 +85,7 @@ const Avatar: React.FC<{
                                 <NavigateBeforeIcon className={styles.navigateIcon }/>
                             </NavLink>
                         )}
-                        <img alt='Pokemon' className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
+                        <img alt="Pokemon" className={styles.pokemonDetails} src={generateMainAssetUrl(pokemonId!)}/>
                         { nextId < POKEMON_LIMIT && (
                             <NavLink to={`/pokemon/${nextId}`}>
                                 <NavigateNextIcon className={styles.navigateIcon} />
@@ -94,7 +94,7 @@ const Avatar: React.FC<{
 
                     </Paper>
                     <Paper elevation={0}>
-                        <Typography variant='h6'>
+                        <Typography variant="h6">
                             <span className={styles.typesHeader}>Types</span>
                         </Typography>
                         <Divider/>
@@ -105,11 +105,11 @@ const Avatar: React.FC<{
                       direction="column"
                       justifyContent="center"
                       alignItems="center">
-                    { flavor_text_entries.length > 0 && <Typography align='center' className={styles.flavorText} >"{flavor_text_entries[0].flavor_text}"</Typography> }
+                    { flavor_text_entries.length > 0 && <Typography align="center" className={styles.flavorText} >"{flavor_text_entries[0].flavor_text}"</Typography> }
                 </Grid>
             </Paper>
         </>
-    )
-}
+    );
+};
 
-export default Avatar
+export default Avatar;
