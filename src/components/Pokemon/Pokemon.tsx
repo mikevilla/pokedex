@@ -104,7 +104,7 @@ const Pokemon: React.FC = ()=> {
 
     // Pokemon Species Details
     const [speciesData, setSpeciesData] = useState<SpeciesType>(initSpeciesData);
-    const { capture_rate, color, egg_groups, flavor_text_entries, habitat, growth_rate, gender_rate } = speciesData;
+    const { capture_rate, egg_groups, flavor_text_entries, habitat, growth_rate, gender_rate } = speciesData;
 
     type Evolution = {
         id: string | undefined,
@@ -189,7 +189,7 @@ const Pokemon: React.FC = ()=> {
                         const { data } = response;
                         const { chain } = data;
 
-                        const evolutionChain = buildEvolution(chain);
+                        buildEvolution(chain);
                         setEvolutionChain(evolutionList);
                     })
             })
@@ -197,8 +197,7 @@ const Pokemon: React.FC = ()=> {
                 setSpeciesData(initSpeciesData)
             })
 
-
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokemonId])
 
     // build details jsx
