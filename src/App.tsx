@@ -74,6 +74,7 @@ const App = () => {
                 dispatch(pokemonActions.setOptionsData(optionsData));
             })
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pokemonData, optionsData])
 
     const router = createBrowserRouter( [
