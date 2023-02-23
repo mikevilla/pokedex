@@ -1,5 +1,5 @@
 import {AppBar, Avatar, AvatarGroup, Grid, Toolbar, Tooltip} from "@mui/material";
-import logo from "../../img/pokemon_logo_small.png";
+import logo from "./pokemon_logo_small.png";
 import SearchIcon from "@mui/icons-material/Search";
 import {Typography } from '@mui/material';
 import Search from "../Search/Search";
