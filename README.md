@@ -1,6 +1,6 @@
 # Pokédex <img src="https://user-images.githubusercontent.com/24237865/83422649-d1b1d980-a464-11ea-8c91-a24fdf89cd6b.png" align="center" width="12%"/>
 
-#### by Mike Villa
+#### by Mike Villa  [VIEW DEMO](https://pokemonparty.netlify.app/)
 
 * * *
 
@@ -23,9 +23,9 @@
 * This app supports up to pokemon #807 Zeraora.
 * Friendly reminder that for this version we will count visiting a pokemon's detailed page as a pokemon that was searched for. We can change this in the future to only count ones that was explicitly found with the dropdown.
 
-![Alt text](./public/img/pokemon_index_page.png?raw=true)
+![Alt text](./public/img/pokedex_index.png?raw=true)
 
-![Alt text](./public/img/183_details_page.png?raw=true)
+![Alt text](./public/img/oddish_details_page.png?raw=true)
 
 ### Open API
 
