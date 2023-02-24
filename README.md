@@ -1,6 +1,7 @@
 # Pokédex <img src="https://user-images.githubusercontent.com/24237865/83422649-d1b1d980-a464-11ea-8c91-a24fdf89cd6b.png" align="center" width="12%"/>
 
-#### by Mike Villa  [VIEW DEMO](https://pokemonparty.netlify.app/) https://pokemonparty.netlify.app
+#### by Mike Villa  [VIEW DEMO](https://pokemonparty.netlify.app/) 
+https://pokemonparty.netlify.app
 
 * * *
 
