@@ -8,6 +8,15 @@
     height: 90%
 }
 
+.pokemon {
+    height: 80px;
+    margin-left: 10px;
+}
+
+.pokemonLogo {
+    height: 70px;
+}
+
 .searchBox {
     display: flex;
     padding-left: 20px;
