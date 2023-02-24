@@ -1,10 +1,9 @@
+import React from "react";
 import {AppBar, Avatar, AvatarGroup, Grid, Toolbar, Tooltip} from "@mui/material";
-import pokemonLogo from "../../img/pokedexlogo.svg";
 import SearchIcon from "@mui/icons-material/Search";
 import {Typography } from '@mui/material';
 import Search from "../Search/Search";
 import { NavLink, useNavigate} from "react-router-dom";
-import React from "react";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {pokemonActions} from "../pokemonSlice";
 import styles from "../Header/Header.module.css";
@@ -48,8 +47,8 @@ const Header: React.FC = () => {
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
                             <NavLink to="/" onClick={resetFilterTerm}>
-                                <img alt="Pokemon Logo" className={styles.pokemonLogo}
-                                     src={pokemonLogo}/>
+                                <img alt="Pokemon API Logo" className={styles.pokemon}
+                                     src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"/>
                                 <img alt="Pokemon" className={styles.pokemon}
                                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"/>
                             </NavLink>
