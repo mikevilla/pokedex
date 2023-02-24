@@ -1,7 +1,7 @@
 import React from "react";
 import {AppBar, Avatar, AvatarGroup, Grid, Toolbar, Tooltip} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import {Typography } from '@mui/material';
+import {Hidden, Typography } from '@mui/material';
 import Search from "../Search/Search";
 import { NavLink, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
@@ -46,12 +46,14 @@ const Header: React.FC = () => {
                 <Toolbar className={styles.toolbar}>
                     <Grid container spacing={2}>
                         <Grid item xs={4}>
-                            <NavLink to="/" onClick={resetFilterTerm}>
-                                <img alt="Pokemon API Logo" className={styles.pokemon}
-                                     src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"/>
-                                <img alt="Pokemon" className={styles.pokemon}
-                                     src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"/>
-                            </NavLink>
+                                <NavLink to="/" onClick={resetFilterTerm}>
+                                    <Hidden mdDown>
+                                        <img alt="Pokemon API Logo" className={styles.pokemon}
+                                         src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"/>
+                                    </Hidden>
+                                    <img alt="Pokemon" className={styles.pokemon}
+                                         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"/>
+                                </NavLink>
                         </Grid>
                         <Grid item xs={6}>
                             { optionsData !== null ? (
@@ -63,18 +65,20 @@ const Header: React.FC = () => {
                             }
                         </Grid>
                         <Grid item xs={2}>
-                            { reverseHistory.length > 0 && <Typography className={styles.history}>Recently Searched...</Typography> }
-                            <AvatarGroup max={10}>
-                                {reverseHistory.map((pokemon)=>{
-                                    return (
-                                            <Tooltip  key={pokemon.name} title={pokemon.name} arrow>
-                                                <NavLink to={`/pokemon/${pokemon.id}`}>
-                                                    <Avatar alt={`${pokemon.name}`} src={pokemon.sprite} />
-                                                </NavLink>
-                                            </Tooltip>
-                                    );
-                                })}
-                            </AvatarGroup>
+                            <Hidden mdDown>
+                                { reverseHistory.length > 0 && <Typography className={styles.history}>Recently Searched...</Typography> }
+                                <AvatarGroup max={10}>
+                                    {reverseHistory.map((pokemon)=>{
+                                        return (
+                                                <Tooltip  key={pokemon.name} title={pokemon.name} arrow>
+                                                    <NavLink to={`/pokemon/${pokemon.id}`}>
+                                                        <Avatar alt={`${pokemon.name}`} src={pokemon.sprite} />
+                                                    </NavLink>
+                                                </Tooltip>
+                                        );
+                                    })}
+                                </AvatarGroup>
+                            </Hidden>
                         </Grid>
                     </Grid>
                 </Toolbar>
