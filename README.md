@@ -3,6 +3,8 @@
 #### by Mike Villa  [VIEW DEMO](https://pokemonparty.netlify.app/) 
 https://pokemonparty.netlify.app
 
+(updated 2023)
+
 * * *
 
 ###  Pokedex App Functionality
